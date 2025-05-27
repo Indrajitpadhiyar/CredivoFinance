@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Login from './assets/components/login-signup/Login.jsx'
 import './App.css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import Login from './components/login-signup/Login';
 
 function App() {
   const [count, setCount] = useState(0)
