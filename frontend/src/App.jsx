@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import Login from './components/login-signup/Login';
+// import Login from './components/login-signup/Login';
+import Navbar from './components/Navbar/navbar';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,7 +26,8 @@ function App() {
       <div className='w-full h-screen relative overflow-hidden'>
         <div className="circule1 absolute w-[25%] h-[50%] -left-[120px] -top-[120px] bg-blue-400 rounded-full blur-3xl"></div>
         <div className="circule2 absolute w-[25%] h-[50%] -right-[120px] -bottom-[100px] bg-blue-400 rounded-full blur-3xl"></div>
-        <Login />
+        {/* <Login /> */}
+        <Navbar />
       </div>
     </>
   )
