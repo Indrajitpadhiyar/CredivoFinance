@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: Inter-Fade;
+    src: url(../public/fonts/fonts/interfade/InterFade.ttf);
+}
+
+h1{
+    font-family: Inter-Fade;
+}
