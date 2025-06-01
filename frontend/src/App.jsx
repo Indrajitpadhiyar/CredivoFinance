@@ -8,7 +8,7 @@ import Home from './components/pages/Home';
 import Page from './components/pages/DashBoard/page';
 import Income from './components/pages/DashBoard/Income';
 import Expense from './components/pages/DashBoard/Expense';
-import Signup from './components/login-signup/Signup';
+import Register from '../src/components/login-signup/Register';
 
 import {
   BrowserRouter as Router,
@@ -58,7 +58,7 @@ function App() {
 
               <Route path='/' element={<Root />} />
               <Route path='/login' element={<Login />} />
-              <Route path='/signup' element={<Signup />} />
+              <Route path='/register' element={<Register />} />
               <Route path='/Dashboard' element={<Page />} />
               <Route path='/home' element={<Home />} />
               <Route path='/income' element={<Income />} />

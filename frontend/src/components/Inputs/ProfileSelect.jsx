@@ -56,7 +56,7 @@ const ProfileSelect = ({ image, setImage }) => {
                         className="overflow-hidden w-full h-full object-cover rounded-full"
                     />
                     <button
-                    className="absolute top-[37%] right-[47%] flex items-center justify-center bg-red-500 w-7 h-7 rounded-full text-white hover:text-gray-600"
+                    className="absolute top-[25%] right-[40%] flex items-center justify-center bg-red-500 w-7 h-7 rounded-full text-white hover:text-gray-600"
                         onClick={handelImageRemove}
                     >
                         <LuTrash />
