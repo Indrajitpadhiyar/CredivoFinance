@@ -1,4 +1,4 @@
-import { uploadImage } from "./uploadImage";
+import uploadImage from "./uploadImage"; // ✅ Correct
 
 export const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -19,10 +19,12 @@ const Register = () => {
     const [Profilepic, setProfilepic] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("");
 
-
+    
     const { updateUser } = useContext(UserContext);
-
+    
     const navigate = useNavigate();
+    
+    let profileImageUrl = "";
     const handelRegister = async (e) => {
         e.preventDefault();
 
@@ -45,7 +47,6 @@ const Register = () => {
         seterror("");
 
         try {
-            let profileImageUrl = "";
 
             if (Profilepic) {
                 const imgUploadRes = await uploadImage(Profilepic);

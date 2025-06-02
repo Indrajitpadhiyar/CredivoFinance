@@ -30,7 +30,7 @@ exports.registerUser = async (req, res) => {
 
     const user = new User({ fullName, email, password, profileImageUrl });
     await user.save();
-    console.log("User registered successfully:", user);
+    // console.log("User registered successfully:", user);
 
     res.status(201).json({
       id: user._id,
@@ -80,7 +80,7 @@ exports.getUserInfo = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).json(user);
+    res.status(200).json(user); 
   } catch (error) {
     res.status(500).json({
       message: "Server error",
