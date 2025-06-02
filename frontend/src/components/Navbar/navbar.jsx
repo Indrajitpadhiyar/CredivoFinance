@@ -28,7 +28,9 @@ const Navbar = () => {
       
      
       {/* Login Button */}
-      <button className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800">
+      <button
+      onClick={() => window.location.href = '/login'}
+      className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800">
         Login
       </button>
     </nav>

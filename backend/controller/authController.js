@@ -17,14 +17,20 @@ exports.registerUser = async (req, res) => {
       .status(400)
       .json({ message: "Please provide all required fields" });
   }
+  // console.log("Registering user with email:", email);
+  // console.log("Request body:", req.body);
+
   try {
     const existingUser = await User.findOne({ email });
+    // console.log("Checking for existing user:", existingUser);
+    console.log("User already exists:", existingUser);
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
     const user = new User({ fullName, email, password, profileImageUrl });
     await user.save();
+    console.log("User registered successfully:", user);
 
     res.status(201).json({
       id: user._id,
@@ -33,6 +39,7 @@ exports.registerUser = async (req, res) => {
       message: "User registered successfully",
     });
   } catch (error) {
+    // console.log("Error during user registration:", error);
     res.status(500).json({
       message: "Server error",
       error: error.message,
