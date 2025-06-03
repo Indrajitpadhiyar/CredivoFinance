@@ -2,36 +2,36 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-   <nav className="flex items-center justify-between px-8 py-4 shadow-md bg-white absolute top-0 left-0 right-0">
-      {/* Logo and Tagline */}
-      <div className="flex items-center space-x-2">
-        <img src="image/credivo_2.png" alt="logo"   className="h-13 w-40" />
-        <div className="flex flex-col leading-tight">
-          {/* <span className="text-xl font-bold text-blue-900">credivo</span>
-          <span className="text-xs text-gray-500">meaving make Snople</span> */}
+  <nav className="bg-lightblack text-slate-900 backdrop-blur-md sticky top-0 z-50 shadow-lg ">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center">
+              <img src="image/CF_LOGO_BLUE.png" alt="Logo" className="h-8 w-40" />
+              {/* <span className="font-bold text-3xl text-sky-400">Credivo</span> */}
+            </div>
+            <div className="hidden md:flex space-x-6 items-center">
+              <a href="#Home" className="text-black hover:text-sky-400 transition-colors">Home</a>
+              <a href="#investment" className="text-black hover:text-sky-400 transition-colors  ">Investment</a>
+              <a href="#about" className="text-black hover:text-sky-400 transition-colors  ">About Us</a>
+              {/* <a href="#contact" className="text-black hover:text-sky-400 transition-colors">Contact</a> */}
+              
+              <a href="#dashboard" className="text-black hover:text-sky-400 transition-colors flex items-center space-x-2">
+                <img src={"image/dashboard-horizontal-line.svg"} alt="Dashboard" className="h-5 w-5" />
+                <span>Dashboard</span>
+              </a>
+              <button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                Login | Sign Up
+              </button>
+            </div>
+            <div className="md:hidden">
+              {/* Mobile menu button placeholder */}
+              <button className="text-slate-300 hover:text-sky-400">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Nav Links */}
-      <div className="flex items-center space-x-30 text-gray-800 text-sm font-medium">
-        <a href="#home" className="hover:text-blue-600">Home</a>
-        <a href="#services" className="hover:text-blue-600">Services</a>
-        <a href="#about" className="hover:text-blue-600">About</a>
-        <a href="#resources" className="hover:text-blue-600">Resources</a>
-        <a href="#contact" className="hover:text-blue-600">Contact</a>
-        <a href="#dashboard" className="hover:text-blue-600 flex items-center space-x-2">
-        <img src={"image/dashboard-horizontal-line.svg"} alt="Dashboard" className="h-5 w-5" />
-        <span>Dashboard</span>
-        </a>
-      </div>
-
-      
-     
-      {/* Login Button */}
-      <button className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800">
-        Login
-      </button>
-    </nav>
+      </nav>
   );
 };
 
