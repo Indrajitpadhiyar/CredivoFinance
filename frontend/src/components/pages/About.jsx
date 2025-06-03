@@ -64,10 +64,10 @@ export default function App() {
   }, [testimonials.length]);
 
   return (
-    <div className="backdrop-md  text-white font-sans antialiased overflow-y-scroll">
+    <div className="backdrop-md w-full  text-white font-sans antialiased overflow-y-scroll">
       {/* Hero Section */}
       <Navbar />
-      <section id="about" className="py-16 md:py-24 ">
+      <section id="about" className="py-16 md:py-24 backdrop-blur-md bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
             <h1 className="text-4xl text-black sm:text-5xl lg:text-6xl font-inter mb-10 leading-tight">
@@ -94,11 +94,11 @@ export default function App() {
       </section>
 
       {/* Protecting You Section */}
-      <section className="py-16 md:py-24 ">
+      <section className="py-16 md:py-24  backdrop-blur-md bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-black text-3xl sm:text-4xl font-bold mb-4">Protecting You And Your Money</h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-700 max-w-2xl mx-auto">
               We offer a range of features designed to give you peace of mind and secure your financial assets.
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function App() {
       </section>
 
       {/* Pay People Section */}
-      <section className="py-16 md:py-24 border-t">
+      <section className="py-16 md:py-24 shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <img
@@ -151,7 +151,7 @@ export default function App() {
       </section>
 
       {/* Best Financial Features Section */}
-      <section id="features" className="py-16 md:py-24 bg-slate-800">
+      <section id="features" className="py-16 md:py-24 backdrop-blur-md bg-slate-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">We Provide The Best Financial Features</h2>
@@ -171,10 +171,10 @@ export default function App() {
       </section>
 
       {/* Send Invoice Section (Mobile Focus) */}
-      <section className="py-16 md:py-24 b from-slate-800 to-slate-900">
+      <section className="py-16 md:py-24 backdrop-blur-md bg-white/30 from-slate-800 to-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-700 mb-6">Send Invoices, Track Expenses & Get Paid On Your Mobile</h2>
+            <h2 className="text-3xl text-slate-700  sm:text-4xl font-bold mb-6">Send Invoices, Track Expenses & Get Paid On Your Mobile</h2>
             <p className="text-lg text-slate-700 mb-8">
               Manage your business finances on the go with our powerful mobile application. Create professional invoices, track expenses effortlessly, and receive payments quickly and securely, all from your smartphone.
             </p>
@@ -195,7 +195,7 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 md:py-24">
+      <section id="testimonials" className="py-16 md:py-24 backdrop-blur-md bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-black sm:text-4xl font-bold mb-4">Founders Of Credivo</h2>
@@ -234,9 +234,9 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24  text-slate-900">
+      <section className="py-16 md:py-24  backdrop-blur-md bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">The Financial Standard For Your Future Is Here</h2>
+          <h2 className="text-3xl text-slate-700  sm:text-4xl font-bold mb-6">The Financial Standard For Your Future Is Here</h2>
           <p className="text-lg text-slate-800 mb-8 max-w-xl mx-auto">
             Ready to experience a better way to manage your future and grow your Money? Join Credivo today and take the first step towards a secure financial future.
           </p>
