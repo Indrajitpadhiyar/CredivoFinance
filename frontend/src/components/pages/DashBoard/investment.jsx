@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Income() {
+const investment = () => {
   return (
     <div>
-      income
+      indome
     </div>
   )
 }
 
-export default Income
+export default investment

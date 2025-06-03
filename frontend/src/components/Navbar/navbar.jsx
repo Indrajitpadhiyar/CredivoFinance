@@ -10,8 +10,8 @@ const Navbar = () => {
             {/* <span className="font-bold text-3xl text-sky-400">Credivo</span> */}
           </div>
           <div className="hidden md:flex space-x-6 items-center">
-            <a href="#Home" className="text-black hover:text-sky-400 transition-colors">Home</a>
-            <a href="#investment" className="text-black hover:text-sky-400 transition-colors  ">Investment</a>
+            <a href="/Home" className="text-black hover:text-sky-400 transition-colors">Home</a>
+            <a href="/investment" className="text-black hover:text-sky-400 transition-colors  ">Investment</a>
             <a href="/About" className="text-black hover:text-sky-400 transition-colors  ">About Us</a>
             <a href="/Profile" className="text-black hover:text-sky-400 transition-colors  ">Profile</a>
             {/* <a href="#contact" className="text-black hover:text-sky-400 transition-colors">Contact</a> */}
