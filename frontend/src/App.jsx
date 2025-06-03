@@ -5,9 +5,7 @@ import gsap from 'gsap';
 import Login from './components/login-signup/Login';
 import Navbar from './components/Navbar/navbar';
 import Home from './components/pages/Home';
-import Page from './components/pages/DashBoard/page';
-import Income from './components/pages/DashBoard/Income';
-import Expense from './components/pages/DashBoard/Expense';
+import Profile from './components/pages/DashBoard/Profile';
 import Register from './components/login-signup/register';
 import UserProvider from './context/useContext';
 
@@ -46,6 +44,8 @@ function App() {
     <>
       <UserProvider>
         <div className='cursor w-5 h-5 bg-red-500 blur rounded-full absolute z-50'></div>
+        <div>
+        </div>
         <div className='w-full h-screen relative overflow-hidden z-1'>
           <img
             src="/image/bgg.svg"
@@ -61,10 +61,8 @@ function App() {
                 <Route path='/' element={<Root />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/Dashboard' element={<Page />} />
+                <Route path='/Profile' element={<Profile />} />
                 <Route path='/home' element={<Home />} />
-                <Route path='/income' element={<Income />} />
-                <Route path='/expense' element={<Expense />} />
               </Routes>
             </Router>
           </div>

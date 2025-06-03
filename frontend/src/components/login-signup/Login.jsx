@@ -66,14 +66,6 @@ const Login = () => {
       repeat: -1,
       yoyo: true
     })
-    gsap.to('.circule2', {
-      x: -100,
-      y: -100,
-      scale: 1.1,
-      duration: 3,
-      repeat: -1,
-      yoyo: true
-    })
   })
 
   return (
