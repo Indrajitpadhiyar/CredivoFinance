@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Users, TrendingUp, FileText, CreditCard, Phone, MessageSquare, BarChart2, Settings, Lock, Briefcase, Smartphone, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import Navbar from '../Navbar/navbar';
 
 
 
@@ -63,36 +64,9 @@ export default function App() {
   }, [testimonials.length]);
 
   return (
-    <div className="bg-slate-900 backdrop-md  text-white font-sans antialiased">
-      {/* Navbar Placeholder - In a real app, this would be a separate component */}
-      {/* <nav className="bg-lightblue-900 text-slate-900 backdrop-blur-md sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center">
-              <img src="image/CF_LOGO_PNG.png" alt="Logo" className="h-15 w-50" />
-              <span className="font-bold text-3xl text-sky-400">Credivo</span>
-            </div>
-            <div className="hidden md:flex space-x-6 items-center">
-              <a href="#about" className="text-slate-300 hover:text-sky-400 transition-colors">About Us</a>
-              <a href="#features" className="text-slate-300 hover:text-sky-400 transition-colors">Features</a>
-              <a href="#testimonials" className="text-slate-300 hover:text-sky-400 transition-colors">Testimonials</a>
-              <a href="#contact" className="text-slate-300 hover:text-sky-400 transition-colors">Contact</a>
-              <button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
-                Login | Sign Up
-              </button>
-            </div> */}
-            {/* <div className="md:hidden"> */}
-              {/* Mobile menu button placeholder */}
-              {/* <button className="text-slate-300 hover:text-sky-400">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-              </button>
-            </div> */}
-          {/* </div>
-        </div>
-      </nav> */}
-
-      
+    <div className="bg-white backdrop-md  text-white font-sans antialiased overflow-y-scroll">
       {/* Hero Section */}
+      <Navbar />
       <section id="about" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
@@ -100,18 +74,18 @@ export default function App() {
               About <span className="text-sky-400">Credivo</span>
             </h1>
             <p className="text-lg sm:text-xl text-black mb-8">
-             At Credivo, we make your money work for you. No complex processes, no active involvement—just smart, secure investing. You invest your funds with us, and we handle the rest.
+              At Credivo, we make your money work for you. No complex processes, no active involvement—just smart, secure investing. You invest your funds with us, and we handle the rest.
 
-Our expert team manages and grows your investment, delivering consistent returns while you sit back and enjoy the rewards. With a focus on transparency, trust, and performance, Credivo is where passive income becomes powerful.
+              Our expert team manages and grows your investment, delivering consistent returns while you sit back and enjoy the rewards. With a focus on transparency, trust, and performance, Credivo is where passive income becomes powerful.
             </p>
             <button className="  bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg text-lg transition-transform hover:scale-105 shadow-lg">
               Get Started
             </button>
           </div>
           <div>
-            <img 
-              src="image/dashbord_about.png" 
-              alt="Financial Growth Illustration" 
+            <img
+              src="image/dashbord_about.png"
+              alt="Financial Growth Illustration"
               className="rounded-xl shadow-2xl mx-auto"
               onError={(e) => e.target.src = 'https://placehold.co/600x400/1E293B/94A3B8?text=Image+Error'}
             />
@@ -129,19 +103,19 @@ Our expert team manages and grows your investment, delivering consistent returns
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Lock size={40} />} 
-              title="Advanced Security" 
+            <FeatureCard
+              icon={<Lock size={40} />}
+              title="Advanced Security"
               description="State-of-the-art encryption and multi-factor authentication to keep your data and assets safe."
             />
-            <FeatureCard 
-              icon={<Users size={40} />} 
-              title="Expert Support" 
+            <FeatureCard
+              icon={<Users size={40} />}
+              title="Expert Support"
               description="Our dedicated team of financial experts is available 24/7 to assist you with any questions or concerns."
             />
-            <FeatureCard 
-              icon={<CheckCircle size={40} />} 
-              title="Regulatory Compliance" 
+            <FeatureCard
+              icon={<CheckCircle size={40} />}
+              title="Regulatory Compliance"
               description="We adhere to the strictest industry standards and regulations to ensure transparency and trust."
             />
           </div>
@@ -152,9 +126,9 @@ Our expert team manages and grows your investment, delivering consistent returns
       <section className="py-16 md:py-24 bg-white border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <img 
-              src="image/easypayment.png" 
-              alt="Easy Payments Illustration" 
+            <img
+              src="image/easypayment.png"
+              alt="Easy Payments Illustration"
               className="rounded-xl shadow-2xl mx-auto"
               onError={(e) => e.target.src = 'https://placehold.co/500x350/0F172A/94A3B8?text=Image+Error'}
             />
@@ -165,12 +139,12 @@ Our expert team manages and grows your investment, delivering consistent returns
               Simplify your payments with our intuitive platform. Send and receive money easily, track your transactions in one place, and save time and reduce hassle.
             </p>
             <ul className="space-y-5 text-black mb-8">
-              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20}/> Seamless domestic and international transfers.</li>
-              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20}/> Real-time transaction tracking.</li>
-              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20}/> Low transaction fees and transparent pricing.</li>
+              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20} /> Seamless domestic and international transfers.</li>
+              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20} /> Real-time transaction tracking.</li>
+              <li className="flex items-center"><CheckCircle className="text-sky-400 mr-2" size={20} /> Low transaction fees and transparent pricing.</li>
             </ul>
             <button className="border border-sky-500 text-sky-500 hover:bg-blue-50 hover:text-slate-900 font-semibold px-8 py-3 rounded-lg text-lg transition-colors">
-              Learn More <ArrowRight className="inline ml-2" size={20}/>
+              Learn More <ArrowRight className="inline ml-2" size={20} />
             </button>
           </div>
         </div>
@@ -186,48 +160,48 @@ Our expert team manages and grows your investment, delivering consistent returns
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-            <IconFeature icon={<BarChart2 size={28}/>} text="Budget Management Tools" />
-            <IconFeature icon={<TrendingUp size={28}/>} text="Investment Portfolio Monitoring" />
-            <IconFeature icon={<CreditCard size={28}/>} text="Automated Bill Payments" />
-            <IconFeature icon={<FileText size={28}/>} text="Comprehensive Reporting & Analytics" />
-            <IconFeature icon={<Briefcase size={28}/>} text="All-in-One Account Overview" />
-            <IconFeature icon={<Shield size={28}/>} text="Top-Tier Security and Privacy" />
+            <IconFeature icon={<BarChart2 size={28} />} text="Budget Management Tools" />
+            <IconFeature icon={<TrendingUp size={28} />} text="Investment Portfolio Monitoring" />
+            <IconFeature icon={<CreditCard size={28} />} text="Automated Bill Payments" />
+            <IconFeature icon={<FileText size={28} />} text="Comprehensive Reporting & Analytics" />
+            <IconFeature icon={<Briefcase size={28} />} text="All-in-One Account Overview" />
+            <IconFeature icon={<Shield size={28} />} text="Top-Tier Security and Privacy" />
           </div>
         </div>
       </section>
 
       {/* Send Invoice Section (Mobile Focus) */}
-      {/* <section className="py-16 md:py-24 bg-white from-slate-800 to-slate-900">
+      <section className="py-16 md:py-24 bg-white from-slate-800 to-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">Send Invoices, Track Expenses & Get Paid On Your Mobile</h2>
-            <p className="text-lg text-slate-300 mb-8">
+            <p className="text-lg text-slate-700 mb-8">
               Manage your business finances on the go with our powerful mobile application. Create professional invoices, track expenses effortlessly, and receive payments quickly and securely, all from your smartphone.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <img src="https://placehold.co/150x50/0F172A/FFFFFF?text=App+Store" alt="App Store" className="rounded-lg cursor-pointer hover:opacity-80 transition-opacity"/>
-                <img src="https://placehold.co/150x50/0F172A/FFFFFF?text=Google+Play" alt="Google Play" className="rounded-lg cursor-pointer hover:opacity-80 transition-opacity"/>
+              <img src="https://placehold.co/150x50/0F172A/FFFFFF?text=App+Store" alt="App Store" className="rounded-lg cursor-pointer hover:opacity-80 transition-opacity" />
+              <img src="https://placehold.co/150x50/0F172A/FFFFFF?text=Google+Play" alt="Google Play" className="rounded-lg cursor-pointer hover:opacity-80 transition-opacity" />
             </div>
           </div>
           <div>
-            <img 
-              src="https://placehold.co/450x550/1E293B/7DD3FC?text=Mobile+App+UI" 
-              alt="Mobile App Interface" 
+            <img
+              src="https://placehold.co/450x550/1E293B/7DD3FC?text=Mobile+App+UI"
+              alt="Mobile App Interface"
               className="rounded-xl shadow-2xl mx-auto"
               onError={(e) => e.target.src = 'https://placehold.co/450x550/1E293B/94A3B8?text=Image+Error'}
             />
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-black sm:text-4xl font-bold mb-4">Founders Of Credivo</h2>
-            {/* <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               See what our satisfied clients are saying about their experience with Finamore.
-            </p> */}
+            </p>
           </div>
           <div className="relative max-w-xl mx-auto">
             {testimonials.map((testimonial, index) => (
@@ -236,7 +210,7 @@ Our expert team manages and grows your investment, delivering consistent returns
                 className={`transition-opacity duration-1000 ease-in-out ${index === currentTestimonial ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 w-full'}`}
               >
                 {index === currentTestimonial && (
-                  <TestimonialCard 
+                  <TestimonialCard
                     quote={testimonial.quote}
                     author={testimonial.author}
                     role={testimonial.role}
@@ -245,7 +219,7 @@ Our expert team manages and grows your investment, delivering consistent returns
                 )}
               </div>
             ))}
-             <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center mt-8 space-x-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
@@ -309,9 +283,9 @@ Our expert team manages and grows your investment, delivering consistent returns
               </ul>
             </div>
           </div>
-          {/* <div className="border-t border-slate-700 pt-8 text-center">
+          <div className="border-t border-slate-700 pt-8 text-center">
             <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} Finamore. All rights reserved. Built with React & Tailwind CSS.</p>
-          </div> */}
+          </div>
         </div>
       </footer>
 

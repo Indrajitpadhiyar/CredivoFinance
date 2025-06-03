@@ -3,8 +3,18 @@ import './App.css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Login from './components/login-signup/Login';
-import Navbar from './components/Navbar/navbar';
+import Profile from './components/pages/DashBoard/Profile';
+import Register from './components/login-signup/register';
+import UserProvider from './context/useContext';
+import About from './components/pages/About';
+import Home from './components/pages/Home';
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 function App() {
   const [count, setCount] = useState(0)
   const [mousePointer, setMousePointer] = useState({ x: 0, y: 0 })
@@ -20,7 +30,6 @@ function App() {
     })
   })
   useGSAP(() => {
-
     const mouseMove = (e) => {
       gsap.to('.cursor', {
         x: e.clientX,
@@ -33,13 +42,33 @@ function App() {
 
   return (
     <>
-      <div className='cursor w-5 h-5 bg-red-500 blur rounded-full absolute z-10'></div>
-      <div className='w-full h-screen relative overflow-hidden'>
-        <div className="circule1 absolute w-[25%] h-[50%] -left-[120px] -top-[120px] bg-blue-400 rounded-full blur-3xl"></div>
-        <div className="circule2 absolute w-[25%] h-[50%] -right-[120px] -bottom-[100px] bg-blue-400 rounded-full blur-3xl"></div>
-        {/* <Login /> */}
-        <Navbar />
-      </div>
+      <UserProvider>
+        <div className='cursor w-5 h-5 bg-red-500 blur rounded-full absolute z-50 '></div>
+        <div>
+        </div>
+        <div className='w-full h-screen relative overflow-hidden z-1'>
+          <img
+            src="/image/bgg.svg"
+            alt="background"
+            className="w-full h-screen relative object-cover top-0 left-0"
+          />
+          <div className="circule1 absolute w-[25%] h-[50%] right-[100%] left-[70%] -top-[120px] bg-red-300 rounded-full blur-3xl z-10"></div>
+          {/* <div className="circule2 absolute w-[25%] h-[50%] -right-[120px] -bottom-[100px] bg-blue-400 rounded-full blur-3xl z-10"></div> */}
+          <div className='pages flex flex-col absolute h-full w-full bottom-0 z-100'>
+            <Router>
+              <Routes>
+
+                <Route path='/' element={<Root />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/Profile' element={<Profile />} />
+                <Route path='/About' element={<About />} />
+              </Routes>
+            </Router>
+          </div>
+        </div>
+      </UserProvider>
     </>
   )
 }
