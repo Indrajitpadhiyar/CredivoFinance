@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Users, TrendingUp, FileText, CreditCard, Phone, MessageSquare, BarChart2, Settings, Lock, Briefcase, Smartphone, Star, CheckCircle, ArrowRight } from 'lucide-react';
 import Navbar from '../Navbar/navbar';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../assets/motion';
+import { textVariant } from '../../assets/motion';
 
 
 
@@ -64,37 +67,62 @@ export default function App() {
   }, [testimonials.length]);
 
   return (
-    <div className="backdrop-md w-full  text-white font-sans antialiased overflow-y-scroll">
+    <div className="backdrop-md w-full h-screen  text-white font-sans antialiased overflow-y-scroll">
       {/* Hero Section */}
       <Navbar />
-      <section id="about" className="py-16 md:py-24 backdrop-blur-md bg-white/30">
+      <section id="about" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
-            <h1 className="text-4xl text-black sm:text-5xl lg:text-6xl font-inter mb-10 leading-tight">
-              About <span className="text-sky-400">Credivo</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-black mb-8">
+
+            <motion.div
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+            >
+              <h1 className="text-4xl text-black sm:text-5xl lg:text-6xl font-inter mb-10 leading-tight">
+                About <span className="text-sky-400">Credivo</span>
+              </h1>
+            </motion.div>
+
+            <motion.p
+              variants={fadeIn("up", 0.3)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className="text-lg sm:text-xl text-black mb-8">
               At Credivo, we make your money work for you. No complex processes, no active involvement—just smart, secure investing. You invest your funds with us, and we handle the rest.
 
               Our expert team manages and grows your investment, delivering consistent returns while you sit back and enjoy the rewards. With a focus on transparency, trust, and performance, Credivo is where passive income becomes powerful.
-            </p>
-            <button className="  bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg text-lg transition-transform hover:scale-105 shadow-lg">
+            </motion.p>
+            <motion.button
+              variants={fadeIn("up", 0.4)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className="  bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg text-lg transition-transform hover:scale-105 shadow-lg">
               Get Started
-            </button>
+            </motion.button>
           </div>
-          <div>
+          <motion.div
+            variants={fadeIn("left", 0.3)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: true }}
+          >
+
             <img
               src="image/dashbord_about.png"
               alt="Financial Growth Illustration"
               className="rounded-xl shadow-2xl mx-auto"
               onError={(e) => e.target.src = 'https://placehold.co/600x400/1E293B/94A3B8?text=Image+Error'}
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Protecting You Section */}
-      <section className="py-16 md:py-24  backdrop-blur-md bg-white/30">
+      <section className="py-16 md:py-24   bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-black text-3xl sm:text-4xl font-bold mb-4">Protecting You And Your Money</h2>
@@ -103,27 +131,51 @@ export default function App() {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<Lock size={40} />}
-              title="Advanced Security"
-              description="State-of-the-art encryption and multi-factor authentication to keep your data and assets safe."
-            />
-            <FeatureCard
-              icon={<Users size={40} />}
-              title="Expert Support"
-              description="Our dedicated team of financial experts is available 24/7 to assist you with any questions or concerns."
-            />
-            <FeatureCard
-              icon={<CheckCircle size={40} />}
-              title="Regulatory Compliance"
-              description="We adhere to the strictest industry standards and regulations to ensure transparency and trust."
-            />
+            <motion.div
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+            >
+              <FeatureCard
+                icon={<Lock size={40} />}
+                title="Advanced Security"
+                descr
+                description="State-of-the-art encryption and multi-factor authentication to keep your data and assets safe."
+              />
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn("up", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+            >
+              <FeatureCard
+                icon={<Users size={40} />}
+                title="Expert Support"
+                description="Our dedicated team of financial experts is available 24/7 to assist you with any questions or concerns."
+              />
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+            >
+              <FeatureCard
+                icon={<CheckCircle size={40} />}
+                title="Regulatory Compliance"
+                description="We adhere to the strictest industry standards and regulations to ensure transparency and trust."
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Pay People Section */}
-      <section className="py-16 md:py-24 shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 border-t">
+      <section className="py-16 md:py-24  bg-white border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <img
@@ -151,7 +203,7 @@ export default function App() {
       </section>
 
       {/* Best Financial Features Section */}
-      <section id="features" className="py-16 md:py-24 backdrop-blur-md bg-slate-800">
+      <section id="features" className="py-16 md:py-24  bg-slate-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">We Provide The Best Financial Features</h2>
@@ -171,7 +223,7 @@ export default function App() {
       </section>
 
       {/* Send Invoice Section (Mobile Focus) */}
-      <section className="py-16 md:py-24 backdrop-blur-md bg-white/30 from-slate-800 to-slate-900">
+      <section className="py-16 md:py-24  bg-white from-slate-800 to-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
             <h2 className="text-3xl text-slate-700  sm:text-4xl font-bold mb-6">Send Invoices, Track Expenses & Get Paid On Your Mobile</h2>
@@ -195,7 +247,7 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 md:py-24 backdrop-blur-md bg-white/30">
+      <section id="testimonials" className="py-16 md:py-24  bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-black sm:text-4xl font-bold mb-4">Founders Of Credivo</h2>
@@ -234,7 +286,7 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24  backdrop-blur-md bg-white/30">
+      <section className="py-16 md:py-24  bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl text-slate-700  sm:text-4xl font-bold mb-6">The Financial Standard For Your Future Is Here</h2>
           <p className="text-lg text-slate-800 mb-8 max-w-xl mx-auto">

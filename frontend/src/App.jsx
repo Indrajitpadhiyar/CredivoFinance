@@ -9,12 +9,15 @@ import UserProvider from './context/useContext';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 
+
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
+
 function App() {
   const [count, setCount] = useState(0)
   const [mousePointer, setMousePointer] = useState({ x: 0, y: 0 })
