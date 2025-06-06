@@ -6,6 +6,7 @@ const { connect } = require("http2");
 const connectDb = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const uploadRoutes = require("./routes/Upload");
+const incomeRoutes = require("./routes/incomeRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ connectDb();
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/image", uploadRoutes);
+app.use("/api/v1/income", incomeRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
