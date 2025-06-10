@@ -9,7 +9,7 @@ const Navbar = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="bg-lightblack text-slate-900 backdrop-blur-md sticky top-0 z-50 shadow-lg ">
+      className="bg-lightblack text-slate-900 backdrop-blur-md sticky top-0 z-100 shadow-lg ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 

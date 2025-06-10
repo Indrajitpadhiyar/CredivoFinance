@@ -2,6 +2,8 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@import 'locomotive-scroll/dist/locomotive-scroll.css';
+
 @font-face {
     font-family: Inter-Fade;
     src: url(../public/fonts/interfade/InterFade.ttf);
@@ -16,10 +18,21 @@ h1 {
 }
 
 .card {
-    @apply bg-white p-4 rounded-2xl  shadow-lg shadow-gray-100 border border-gray-300;
-    
+    @apply bg-white p-4 rounded-2xl shadow-lg shadow-gray-100 border border-gray-300;
+
 }
 
-.card-btn{
-    @apply bg-white p-2 rounded-2xl flex items-center justify-between  shadow-lg shadow-gray-100 border border-gray-300 hover:cursor-pointer;
+.card-btn {
+    @apply bg-white p-2 rounded-2xl flex items-center justify-between shadow-lg shadow-gray-100 border border-gray-300 hover:cursor-pointer;
+}
+
+.button1 {
+  position: fixed;
+  left: 60vw;
+  bottom: 40vh;
+}
+.button2 {
+  position: fixed;
+  right: 8vw;
+  bottom: 40vh;
 }

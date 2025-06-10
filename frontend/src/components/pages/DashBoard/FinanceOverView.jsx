@@ -20,7 +20,7 @@ function FinanceOverView({ totalExpense, totalIncome, totalBalance }) {
                 label="Total Balance"
                 totalAmount={`₹${totalBalance}`}
                 colors={COLORS}
-                showTextAnchor
+                showTextAnchor={true}
             />
         </div>
     )

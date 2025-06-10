@@ -3,8 +3,16 @@ import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
 import gsap from 'gsap';
 import Navbar from '../Navbar/navbar';
+import Canvas from './Canvas';
+import { FaLocationArrow } from "react-icons/fa";
+import { motion } from "motion/react"
+import { fadeIn } from "../../assets/motion";
+// import HomePageAnimation from './HomePageAnimation';
 
 const Home = () => {
+
+
+
   useGSAP(() => {
     gsap.from('.text1', {
       opacity: 0,
@@ -22,10 +30,11 @@ const Home = () => {
       x: -100,
     })
 
+
   })
   return (
     <>
-      <div className='w-full h-screen overflow-hidden overflow-y-scroll'>
+      <div className='w-full overflow-x-hidden main'>
 
         <Navbar />
         <div className='flex w-full h-screen justify-center items-center flex-col overflow-hidden '>
@@ -52,16 +61,58 @@ const Home = () => {
               className='text-2xl '
             />
           </h2>
-          <button className='bg-orange-500 font-bold text-white px-4 py-2 rounded-md hover:bg-red-600 mt-10'>JOIN NOW</button>
+          <motion.button
+            variants={fadeIn("up", 1)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: true }}
+            className='bg-orange-500 font-bold text-white px-4 py-2 rounded-md hover:bg-red-600 mt-10'>
+            JOIN NOW
+          </motion.button>
 
-          {/* secction2 */}
-          <div>
-            
+          {/* info bottome bar */}
+
+          <div className='w-full  p-1 mt-20 flex   justify-around  font-semibold'>
+            <motion.div
+              variants={fadeIn("right", 0.5)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className='text-gray-400 px-4 py-2'>
+              <h4>For Public And Private Use</h4>
+            </motion.div>
+            <motion.div
+              variants={fadeIn("right", 1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className='text-gray-400 px-4 py-2 '>
+              <h4>Form the Manage your investments</h4>
+            </motion.div>
+            <motion.div
+              variants={fadeIn("right", 1.5)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className='flex justify-center items-center gap-4'>
+              <h4 className='border px-4 py-2 rounded-4xl  hover:bg-black cursor-pointer hover:text-white transform duration-300'>Start Now</h4>
+              <FaLocationArrow />
+            </motion.div>
           </div>
-          {/* secction2 end */}
-
         </div>
-        <footer id="contact" className="py-16 bg-slate-900 border-t border-slate-700">
+
+        {/* info bottome bar end */}
+
+        {/* secction2 */}
+        <div className=' w-full  h-[250vh]'>
+
+          <div className='w-full sticky top-0 left-0 z-50 '>
+
+            <Canvas />
+
+          </div>
+        </div>
+        <footer id="contact" className="py-16 bg-slate-900 border-t border-slate-700 relative z-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
               <div>

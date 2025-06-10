@@ -13,7 +13,7 @@ const RecentTransactions = ({ transactions, onSeeMore }) => {
                 </button>
             </div>
 
-            <div className='mt-6'>
+            <div className='mt-6 overflow-hidden overflow-y-scroll'>
                 {transactions?.slice(0, 5).map((item) => (
                     <TransactionsInfoCard
                         key={item._id}

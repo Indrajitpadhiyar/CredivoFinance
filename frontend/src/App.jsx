@@ -47,8 +47,8 @@ function App() {
 
   return (
     <>
-      <UserProvider>
         <div className='cursor w-5 h-5 bg-red-500 rounded-full  absolute z-50 '></div>
+      <UserProvider>
         <div>
         </div>
         <div className='w-full h-screen relative overflow-hidden z-1'>

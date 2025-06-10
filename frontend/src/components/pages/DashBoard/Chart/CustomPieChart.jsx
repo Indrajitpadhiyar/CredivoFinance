@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import CustomTooltip from './CustomTooltip';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import CustomLegend from './CustomLegend';
 
 function CustomPieChart({
   data,
@@ -9,7 +10,7 @@ function CustomPieChart({
   colors,
   showTextAnchor,
 }) {
-
+  // Debug logs (optional)
   console.log("data:", data);
   console.log("colors:", colors);
 
@@ -27,43 +28,46 @@ function CustomPieChart({
             innerRadius={100}
             labelLine={false}
           >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+            {data?.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={colors?.[index % colors.length] || '#ccc'} // fallback color
+              />
             ))}
           </Pie>
+
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+          <Legend content={<CustomLegend />} />
 
           {showTextAnchor && (
             <>
               <text
-                x='50%'
-                y='50%'
+                x="50%"
+                y="50%"
                 dy={-25}
-                textAnchor='middle'
-                fill='#666'
+                textAnchor="middle"
+                fill="#666"
                 fontSize="14px"
               >
                 {label}
               </text>
               <text
-                x='50%'
-                y='50%'
+                x="50%"
+                y="50%"
                 dy={8}
-                textAnchor='middle'
-                fill='#333'
+                textAnchor="middle"
+                fill="#3333"
                 fontSize="24px"
-                fontWeight="semi-bold"
+                fontWeight="bold"
               >
                 {totalAmount}
               </text>
             </>
           )}
-
         </PieChart>
       </ResponsiveContainer>
-    </div>  
-  )
+    </div>
+  );
 }
 
-export default CustomPieChart
+export default CustomPieChart;
