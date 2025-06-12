@@ -46,15 +46,7 @@ const Navbar = () => {
               whileInView={"show"}
               viewport={{ once: true }}
               href="/About" className="text-black hover:text-sky-400 transition-colors  ">About Us</motion.a>
-            <motion.a
-
-              variants={fadeIn("down", 0.5)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: true }}
-              href="/Profile" className="text-black hover:text-sky-400 transition-colors  ">Profile</motion.a>
-            {/* <a href="#contact" className="text-black hover:text-sky-400 transition-colors">Contact</a> */}
-
+              
             <motion.a
 
               variants={fadeIn("down", 0.6)}
@@ -65,7 +57,17 @@ const Navbar = () => {
               <img src={"image/dashboard-horizontal-line.svg"} alt="Dashboard" className="h-5 w-5" />
               <span>Dashboard</span>
             </motion.a>
-            <motion.button
+            <motion.a
+
+              variants={fadeIn("down", 0.5)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              href="/Profile" className="text-black hover:text-sky-400 transition-colors  ">Profile</motion.a>
+            {/* <a href="#contact" className="text-black hover:text-sky-400 transition-colors">Contact</a> */}
+
+
+            {/* <motion.button
             onClick={() => window.location.href = "/login"}
               variants={fadeIn("left", 0.7)}
               initial="hidden"
@@ -73,14 +75,14 @@ const Navbar = () => {
               viewport={{ once: true }}
               className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
               Login | Sign Up
-            </motion.button>
+            </motion.button> */}
           </div>
           <div className="md:hidden">
             {/* Mobile menu button placeholder */}
-            <button 
+            {/* <button 
             className="text-slate-300 hover:text-sky-400">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

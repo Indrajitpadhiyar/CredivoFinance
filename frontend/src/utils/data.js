@@ -8,7 +8,7 @@ export const SIDE_MANU_DATA = [
     id: "01",
     lable: "Dashboard",
     icon: LuLayoutDashboard,
-    path: "/dashboard",
+    path: "/Dashboard",
   },
   {
     id: "02",

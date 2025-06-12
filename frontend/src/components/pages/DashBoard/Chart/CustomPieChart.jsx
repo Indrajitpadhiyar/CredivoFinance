@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomTooltip from './CustomTooltip';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import CustomTooltip from './CustomTooltip';
 import CustomLegend from './CustomLegend';
 
 function CustomPieChart({
@@ -31,7 +31,7 @@ function CustomPieChart({
             {data?.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={colors?.[index % colors.length] || '#ccc'} // fallback color
+                fill={colors[index % colors.length]} // fallback color
               />
             ))}
           </Pie>
@@ -58,7 +58,7 @@ function CustomPieChart({
                 textAnchor="middle"
                 fill="#3333"
                 fontSize="24px"
-                fontWeight="bold"
+                fontWeight="semi-bold"
               >
                 {totalAmount}
               </text>

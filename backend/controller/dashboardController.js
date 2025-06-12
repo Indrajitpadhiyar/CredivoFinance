@@ -79,23 +79,23 @@ exports.getDashboardData = async (req, res) => {
 
     //final response
 
-    res.json({
-        totalBalance:
-        (totalIncome[0]?.total || 0) - (totalExpense[0]?.total || 0),
+      res.json({
+          totalBalance:
+          (totalIncome[0]?.total || 0) - (totalExpense[0]?.total || 0),
 
-        totalIncome: totalIncome[0]?.total || 0,
-        totalExpense: totalExpense[0]?.total || 0,
-        last30DaysExpense:{
-            total: expenseLast30Days,
-            transactions: last60DaysExpenseTransactions
-        },
-        last60DaysIncome: {
-            total: incomeLast60Days,
-            transactions: last60DaysIncomeTransactions
-        },
-        recentTransactions: lastTransactions
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error});
-  }
+          totalIncome: totalIncome[0]?.total || 0,
+          totalExpense: totalExpense[0]?.total || 0,
+          last30DaysExpense:{
+              total: expenseLast30Days,
+              transactions: last60DaysExpenseTransactions
+          },
+          last60DaysIncome: {
+              total: incomeLast60Days,
+              transactions: last60DaysIncomeTransactions
+          },
+          recentTransactions: lastTransactions
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Server error", error});
+    }
 };

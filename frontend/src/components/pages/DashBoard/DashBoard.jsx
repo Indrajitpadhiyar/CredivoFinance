@@ -6,11 +6,13 @@ import axiosInstance from '../../../utils/axiosinstance'
 import { API_PATHS } from '../../../utils/apiPath'
 import InfoCard from '../../Card/InfoCard'
 import { IoMdCard } from 'react-icons/io';
-import {LuHandCoins, LuWalletMinimal} from 'react-icons/lu'
-import { FaCoins } from "react-icons/fa"; 
-import {addThousandSeparators} from '../../../utils/helper'
+import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu'
+import { FaCoins } from "react-icons/fa";
+import { addThousandSeparators } from '../../../utils/helper'
 import RecentTransactions from './RecentTransactions'
 import FinanceOverView from './FinanceOverView'
+import ExpenseTransactions from './ExpenseTransactions'
+import Last30DaysExpense from './last30DaysExpense'
 
 const DashBoard = () => {
 
@@ -63,13 +65,13 @@ const DashBoard = () => {
                 <InfoCard
                     icon={<LuWalletMinimal />}
                     label="Total Income"
-                    value={addThousandSeparators(dashboardData?.totalBalance || 0)}
+                    value={addThousandSeparators(dashboardData?.totalIncome || 0)}
                     color="bg-orange-500"
                 />
                 <InfoCard
                     icon={<LuHandCoins />}
                     label="Total Expense"
-                    value={addThousandSeparators(dashboardData?.totalBalance || 0)}
+                    value={addThousandSeparators(dashboardData?.totalExpense || 0)}
                     color="bg-red-500"
                 />
             </div>
@@ -85,6 +87,16 @@ const DashBoard = () => {
                 totalIncome={dashboardData?.totalIncome || 0}
                 totalExpense={dashboardData?.totalExpense || 0}
                 />
+                
+                {/* <ExpenseTransactions
+                    transactions={dashboardData?.last30DaysExpense?.transactions || []}
+                    onSeeMore={() => navigate("/Expense")}
+                />
+
+                <Last30DaysExpense
+                    transactions={dashboardData?.last30DaysExpense?.transactions || []}
+                /> */}
+
             </div>
         </div>
     )

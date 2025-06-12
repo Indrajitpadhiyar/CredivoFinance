@@ -7,12 +7,17 @@ import Canvas from './Canvas';
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "motion/react"
 import { fadeIn } from "../../assets/motion";
+import Marquee from '../Marquee';
+import MoneyEffect from './MoneyEffect';
+import { useEffect, useRef } from 'react';
+
 // import HomePageAnimation from './HomePageAnimation';
 
 const Home = () => {
 
+  // const locomotiveScroll = new LocomotiveScroll();
 
-
+  const moneyRef = useRef(null);
   useGSAP(() => {
     gsap.from('.text1', {
       opacity: 0,
@@ -29,14 +34,32 @@ const Home = () => {
       duration: 1,
       x: -100,
     })
+    const Home = ({ setShowCursor }) => {
+      const moneyRef = useRef(null);
 
 
+      useEffect(() => {
+        const onScroll = () => {
+          if (!moneyRef.current) return;
+
+          const rect = moneyRef.current.getBoundingClientRect();
+          const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+
+          setShowCursor(!isInView); // 👈 hide cursor if MoneyEffect is in view
+        };
+
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+      }, [setShowCursor]);
+
+    }
   })
   return (
     <>
+
       <div className='w-full overflow-x-hidden main'>
 
-        <Navbar />
+        <Navbar />  
         <div className='flex w-full h-screen justify-center items-center flex-col overflow-hidden '>
           <div className='w-[80%] h-[35%]  flex  justify-center'>
             <h1 className='text-7xl font-thin flex gap-3 flex-col'>
@@ -78,7 +101,7 @@ const Home = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              className='text-gray-400 px-4 py-2'>
+              className='text-gray-500 px-4 py-2'>
               <h4>For Public And Private Use</h4>
             </motion.div>
             <motion.div
@@ -86,7 +109,7 @@ const Home = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              className='text-gray-400 px-4 py-2 '>
+              className='text-gray-500 px-4 py-2 '>
               <h4>Form the Manage your investments</h4>
             </motion.div>
             <motion.div
@@ -104,7 +127,9 @@ const Home = () => {
         {/* info bottome bar end */}
 
         {/* secction2 */}
-        <div className=' w-full  h-[250vh]'>
+
+
+        <div className=' w-full  h-[350vh]'>
 
           <div className='w-full sticky top-0 left-0 z-50 '>
 
@@ -112,6 +137,19 @@ const Home = () => {
 
           </div>
         </div>
+
+        {/* marquee effect starrt */}
+        <Marquee />
+        {/* marquee effect end */}
+
+        {/* money page effect */}
+        <div className='w-full h-[250vh]' ref={moneyRef}>
+          <div className='w-full sticky top-0 left-0 z-50 '>
+            <MoneyEffect />
+          </div>
+        </div>
+        {/* money page effect end */}
+
         <footer id="contact" className="py-16 bg-slate-900 border-t border-slate-700 relative z-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">

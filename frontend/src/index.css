@@ -2,7 +2,6 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@import 'locomotive-scroll/dist/locomotive-scroll.css';
 
 @font-face {
     font-family: Inter-Fade;
@@ -27,12 +26,17 @@ h1 {
 }
 
 .button1 {
-  position: fixed;
-  left: 60vw;
-  bottom: 40vh;
+    position: fixed;
+    left: 60vw;
+    bottom: 40vh;
 }
+
 .button2 {
-  position: fixed;
-  right: 8vw;
-  bottom: 40vh;
+    position: fixed;
+    right: 8vw;
+    bottom: 40vh;
+}
+
+.custom-cursor {
+    cursor: url('/public/cursor.png'), auto;
 }

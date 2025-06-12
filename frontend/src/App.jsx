@@ -18,21 +18,12 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import DashBoard from './components/pages/DashBoard/DashBoard';
+import FullPageDashboard from './components/pages/DashBoard/FullPageDashboard';
 
 function App() {
   const [count, setCount] = useState(0)
   const [mousePointer, setMousePointer] = useState({ x: 0, y: 0 })
-
-  useGSAP(() => {
-    gsap.to('.circule1', {
-      left: 100,
-      right: 170,
-      scale: 1.1,
-      duration: 7,
-      repeat: -1,
-      yoyo: true,
-    })
-  })
   useGSAP(() => {
     const mouseMove = (e) => {
       gsap.to('.cursor', {
@@ -47,6 +38,7 @@ function App() {
 
   return (
     <>
+    
         <div className='cursor w-5 h-5 bg-red-500 rounded-full  absolute z-50 '></div>
       <UserProvider>
         <div>
@@ -68,6 +60,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/Profile' element={<Profile />} />
+                <Route path='/dashboard' element={<FullPageDashboard />} />
                 <Route path='/Expense' element={<Expense />} />
                 <Route path='/About' element={<About />} />
               </Routes>
