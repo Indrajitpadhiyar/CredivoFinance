@@ -1,4 +1,5 @@
-import uploadImage from "./uploadImage"; // ✅ Correct
+import uploadImage from "./uploadImage"; 
+import moment from "moment";
 
 export const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,6 +21,19 @@ export const addThousandSeparators = (num) => {
 export const preparExpenseBarChartData = (data = []) => {
   const chartData = data.map((item) => ({
     category: item.category,
+    amount: item.amount,
+  }));
+
+  return chartData;
+};
+
+export const preparIncomeBarChartData = (data = []) => {
+  const sortedData = [...data].sort(
+    (a, b) => new DataTransfer(a.data) - b.data
+  );
+  const chartData =sortedData.map((item) => ({
+    month:moment(item?.date).format("Do MMM"),
+    source: item.source,
     amount: item.amount,
   }));
 

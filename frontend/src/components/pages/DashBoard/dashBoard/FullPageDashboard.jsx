@@ -1,18 +1,20 @@
 import React from 'react'
-import { useUserAuth } from '../../Hooks/UseUSerAuth'
+import { useUserAuth } from '../../../Hooks/UseUSerAuth'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import axiosInstance from '../../../utils/axiosinstance'
-import { API_PATHS } from '../../../utils/apiPath'
-import InfoCard from '../../Card/InfoCard'
+import axiosInstance from '../../../../utils/axiosinstance'
+import { API_PATHS } from '../../../../utils/apiPath'
+import InfoCard from '../../../Card/InfoCard'
 import { IoMdCard } from 'react-icons/io';
 import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu'
-import { addThousandSeparators } from '../../../utils/helper'
+import { addThousandSeparators } from '../../../../utils/helper'
 import RecentTransactions from './RecentTransactions'
 import FinanceOverView from './FinanceOverView'
 import ExpenseTransactions from './ExpenseTransactions'
 import Last30DaysExpense from './last30DaysExpense'
-import Navbar from '../../Navbar/navbar'
+import Navbar from '../../../Navbar/Navbar'
+import RecentIncomeWithChart from './RecentIncomeWithChart'
+import RecentIncome from './RecentIncome'
 
 
 function FullPageDashboard() {
@@ -55,7 +57,7 @@ function FullPageDashboard() {
 
     return (
         <>
-        <Navbar />
+            <Navbar />
             <div className='flex flex-col w-full overflow-y-scroll'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                     <InfoCard
@@ -97,6 +99,16 @@ function FullPageDashboard() {
 
                     <Last30DaysExpense
                         transactions={dashboardData?.last30DaysExpense?.transactions || []}
+                    />
+
+                    <RecentIncomeWithChart
+                        data={dashboardData?.last60DaysIncome?.transactions?.slice(0, 4) || []}
+                        totalIncome={dashboardData?.totalIncome || 0}
+                    />
+
+                    <RecentIncome
+                        transactions={dashboardData?.last60DaysIncome?.transactions || []}
+                        onSeeMore={() => navigate("/income")}
                     />
 
                 </div>

@@ -3,12 +3,13 @@ import './App.css'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Login from './components/login-signup/Login';
-import Profile from './components/pages/DashBoard/Profile';
+import Profile from './components/pages/DashBoard/dashBoard/Profile';
 import Register from './components/login-signup/register';
 import UserProvider from './context/useContext';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Expense from './components/pages/Expense';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -18,8 +19,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import DashBoard from './components/pages/DashBoard/DashBoard';
-import FullPageDashboard from './components/pages/DashBoard/FullPageDashboard';
+// import DashBoard from './components/pages/DashBoard/dashBoard/DashBoard';
+import FullPageDashboard from './components/pages/DashBoard/dashBoard/FullPageDashboard';
+import Income from './components/pages/Income';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -38,19 +40,12 @@ function App() {
 
   return (
     <>
-    
-        <div className='cursor w-5 h-5 bg-red-500 rounded-full  absolute z-50 '></div>
+
+      <div className='cursor w-5 h-5 bg-red-500 rounded-full  absolute z-50 '></div>
       <UserProvider>
         <div>
         </div>
         <div className='w-full h-screen relative overflow-hidden z-1'>
-          {/* <img
-            src="/image/bgg.svg"
-            alt="background"
-            className="w-full h-screen relative object-cover top-0 left-0"
-          /> */}
-          {/* <div className="circule1 absolute w-[25%] h-[50%] right-[100%] left-[70%] -top-[120px] bg-red-300 rounded-full blur-3xl z-10"></div> */}
-          {/* <div className="circule2 absolute w-[25%] h-[50%] -right-[120px] -bottom-[100px] bg-blue-400 rounded-full blur-3xl z-10"></div> */}
           <div className='pages flex flex-col absolute h-full w-full bottom-0 z-100'>
             <Router>
               <Routes>
@@ -60,6 +55,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/Profile' element={<Profile />} />
+                <Route path='/Income' element={<Income />} />
                 <Route path='/dashboard' element={<FullPageDashboard />} />
                 <Route path='/Expense' element={<Expense />} />
                 <Route path='/About' element={<About />} />
@@ -67,6 +63,15 @@ function App() {
             </Router>
           </div>
         </div>
+        <Toaster
+          toasterOptions={{
+            className: '',
+            style: {
+              fontSize: '13px'
+            },
+
+          }}
+        />
       </UserProvider>
     </>
   )

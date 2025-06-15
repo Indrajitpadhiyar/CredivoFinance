@@ -1,14 +1,14 @@
 import React from 'react'
-import { useUserAuth } from '../../Hooks/UseUSerAuth'
+import { useUserAuth } from '../../../Hooks/UseUSerAuth'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import axiosInstance from '../../../utils/axiosinstance'
-import { API_PATHS } from '../../../utils/apiPath'
-import InfoCard from '../../Card/InfoCard'
+import axiosInstance from '../../../../utils/axiosinstance'
+import { API_PATHS } from '../../../../utils/apiPath'
+import InfoCard from '../../../Card/InfoCard'
 import { IoMdCard } from 'react-icons/io';
 import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu'
 import { FaCoins } from "react-icons/fa";
-import { addThousandSeparators } from '../../../utils/helper'
+import { addThousandSeparators } from '../../../../utils/helper'
 import RecentTransactions from './RecentTransactions'
 import FinanceOverView from './FinanceOverView'
 import ExpenseTransactions from './ExpenseTransactions'
@@ -88,14 +88,7 @@ const DashBoard = () => {
                 totalExpense={dashboardData?.totalExpense || 0}
                 />
                 
-                {/* <ExpenseTransactions
-                    transactions={dashboardData?.last30DaysExpense?.transactions || []}
-                    onSeeMore={() => navigate("/Expense")}
-                />
-
-                <Last30DaysExpense
-                    transactions={dashboardData?.last30DaysExpense?.transactions || []}
-                /> */}
+             
 
             </div>
         </div>

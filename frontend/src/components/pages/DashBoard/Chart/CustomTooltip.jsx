@@ -11,7 +11,7 @@ function CustomTooltip({ active, payload }) {
                 <p className="text-xs text-gray-600">
                     Amount:
                     <span className="text-xs font-medium text-gray-900">
-                        ${payload[0].value}
+                        ₹{payload[0].value}
                     </span>
                 </p>
             </div>

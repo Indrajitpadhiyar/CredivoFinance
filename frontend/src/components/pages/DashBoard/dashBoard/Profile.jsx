@@ -1,12 +1,12 @@
 import React, { use, useContext } from 'react'
-import { SIDE_MANU_DATA } from '../../../utils/data'
+import { SIDE_MANU_DATA } from '../../../../utils/data'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../../context/useContext';
-import { useUserAuth } from '../../Hooks/UseUSerAuth';
+import { UserContext } from '../../../../context/useContext';
+import { useUserAuth } from '../../../Hooks/UseUSerAuth';
 // import { API_BASE_URL } from '../../../utils/axiosinstance';
-import { API_BASE_URL } from "../../../utils/apiPath";
+import { API_BASE_URL } from "../../../../utils/apiPath";
 import { motion } from 'framer-motion';
-import { fadeIn } from '../../../assets/motion';
+import { fadeIn } from '../../../../assets/motion';
 import DashBoard from './DashBoard';
 
 const Profile = () => {
@@ -90,7 +90,7 @@ const Profile = () => {
         </div>
       </div>
       <div className='h-[97%] w-[90%] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 overflow-hidden'>
-      <DashBoard />
+        <DashBoard />
       </div>
     </div >
   )

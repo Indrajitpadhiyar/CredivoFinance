@@ -1,7 +1,7 @@
 import { LuLayoutDashboard, LuWalletMinimal, LuLogOut } from "react-icons/lu";
-import { FaHome } from "react-icons/fa";
+import { FaCoins, FaHandHolding, FaHome } from "react-icons/fa";
 // import { FaPiggyBank } from "react-icons/fa";
-import { FaCoins } from "react-icons/fa";
+// import { FaCoins } from "react-icons/fa";
 
 export const SIDE_MANU_DATA = [
   {
@@ -22,7 +22,7 @@ export const SIDE_MANU_DATA = [
     icon: FaHome,
     path: "/Home",
   },
-  { id: "04", lable: "Investment", icon: FaCoins, path: "/Investment" },
+  { id: "04", lable: "Expense", icon: FaCoins, path: "/Expense" },
   {
     id: "05",
     lable: "Logout",

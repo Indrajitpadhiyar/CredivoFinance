@@ -9,7 +9,7 @@ const Navbar = () => {
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: true }}
-      className="bg-lightblack text-slate-900 backdrop-blur-md sticky top-0 z-100 shadow-lg ">
+      className="bg-lightblack text-slate-900 backdrop-blur-md sticky top-0 z-40 shadow-lg ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
@@ -34,26 +34,26 @@ const Navbar = () => {
               href="/Home" className="text-black hover:text-sky-400 transition-colors">Home</motion.a>
             <motion.a
 
-              variants={fadeIn("down", 0.3)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: true }}
-              href="/investment" className="text-black hover:text-sky-400 transition-colors  ">Investment</motion.a>
-            <motion.a
-
               variants={fadeIn("down", 0.4)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
               href="/About" className="text-black hover:text-sky-400 transition-colors  ">About Us</motion.a>
-              
+            <motion.a
+
+              variants={fadeIn("down", 0.3)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              href="/Income" className="text-black hover:text-sky-400 transition-colors  ">Income</motion.a>
+
             <motion.a
 
               variants={fadeIn("down", 0.6)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              href="#dashboard" className="text-black hover:text-sky-400 transition-colors flex items-center space-x-2">
+              href="/dashboard" className="text-black hover:text-sky-400 transition-colors flex items-center space-x-2">
               <img src={"image/dashboard-horizontal-line.svg"} alt="Dashboard" className="h-5 w-5" />
               <span>Dashboard</span>
             </motion.a>
