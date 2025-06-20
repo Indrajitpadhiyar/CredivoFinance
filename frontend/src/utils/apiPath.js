@@ -1,6 +1,6 @@
-  export const API_BASE_URL = "https://credivofinance.onrender.com";
+  export const API_BASE_URL = "http://localhost:8000";
 
-  //utils/apiPath.js
+  // utils/apiPath.js
 
   export const API_PATHS = {
     AUTH: {
