@@ -93,7 +93,28 @@ const Income = () => {
 
   //handle download income 
 
-  const handleDownloadIncomeDetails = async () => { };
+  const handleDownloadIncomeDetails = async () => {
+    try {
+      const response = await axiosInstance.get(
+        API_PATHS.INCOME.DOWNLOAD_INCOME_EXCEL, // 🔁 make sure this is defined in your apiPath.js
+        {
+          responseType: "blob",
+        }
+      );
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "income.xlsx");
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log("Something went wrong, please try again", error);
+      toast.error("Something went wrong, please try again");
+    }
+  };
+
 
 
   useEffect(() => {

@@ -50,21 +50,32 @@ exports.downloadExpenseExcel = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const Expense = await Expense.find({ userId }).sort({ date: -1 });
+    const expenses = await Expense.find({ userId }).sort({ date: -1 });
 
-    //paper data to excel
-    const data = Expense.map((item) => ({
+    const data = expenses.map((item) => ({
       category: item.category,
       amount: item.amount,
-      date: item.date,
-      // .toISOString().split('T')[0],
+      date: item.date.toISOString().split("T")[0],
     }));
+
     const wb = xlsx.utils.book_new();
     const ws = xlsx.utils.json_to_sheet(data);
     xlsx.utils.book_append_sheet(wb, ws, "Expense");
-    xlsx.writeFile(wb, "Expense_data.xlsx");
-    res.download("Expense_data.xlsx");
+
+    const buffer = xlsx.write(wb, { type: "buffer", bookType: "xlsx" });
+
+    res.setHeader(
+      "Content-Disposition",
+      'attachment; filename="Expense_data.xlsx"'
+    );
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+
+    res.send(buffer);
   } catch (error) {
+    console.error("Download Error:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
