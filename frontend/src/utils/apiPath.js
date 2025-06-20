@@ -1,4 +1,4 @@
-  export const API_BASE_URL = "https://credivofinance.onrender.com";
+export const API_BASE_URL = "https://credivofinance.onrender.com";
 
   //utils/apiPath.js
 
