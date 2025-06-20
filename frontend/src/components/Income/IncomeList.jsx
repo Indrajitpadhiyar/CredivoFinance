@@ -15,7 +15,7 @@ const IncomeList = ({ transactions, onDelete, onDownload }) => {
                 </button>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 font-bold text-black'>
-                {transactions?.slice(0, 5)?.map((item) => (
+                {transactions?.slice(0, 100)?.map((item) => (
                     <TransactionsInfoCard
                         key={item._id}
                         title={item.source}

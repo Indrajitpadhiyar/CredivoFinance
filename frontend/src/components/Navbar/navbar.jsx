@@ -1,8 +1,17 @@
 import React from 'react'
 import { motion } from "motion/react"
 import { fadeIn } from "../../assets/motion";
+import { API_BASE_URL } from '../../utils/apiPath';
+import { useUserAuth } from '../Hooks/UseUSerAuth';
+import { useContext } from 'react'
+import { UserContext } from '../../context/useContext';
+import { FaUserCircle } from 'react-icons/fa'
 
 const Navbar = () => {
+  useUserAuth(); // Custom hook to fetch user data and handle authentication
+
+  const { user, clearUser } = useContext(UserContext);
+
   return (
     <motion.nav
       variants={fadeIn("down", 0.2)}
@@ -41,15 +50,22 @@ const Navbar = () => {
               href="/About" className="text-black hover:text-sky-400 transition-colors  ">About Us</motion.a>
             <motion.a
 
-              variants={fadeIn("down", 0.3)}
+              variants={fadeIn("down", 0.5)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
               href="/Income" className="text-black hover:text-sky-400 transition-colors  ">Income</motion.a>
-
             <motion.a
 
               variants={fadeIn("down", 0.6)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              href="/Expense" className="text-black hover:text-sky-400 transition-colors  ">Expense</motion.a>
+
+            <motion.a
+
+              variants={fadeIn("down", 0.7)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
@@ -57,13 +73,39 @@ const Navbar = () => {
               <img src={"image/dashboard-horizontal-line.svg"} alt="Dashboard" className="h-5 w-5" />
               <span>Dashboard</span>
             </motion.a>
-            <motion.a
+            {/* <motion.a
 
-              variants={fadeIn("down", 0.5)}
+              variants={fadeIn("down", 0.8)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              href="/Profile" className="text-black hover:text-sky-400 transition-colors  ">Profile</motion.a>
+              href="/Profile" className="text-black hover:text-sky-400 transition-colors  ">Profile</motion.a> */}
+
+            {user?.profileImageUrl ? (
+              <motion.div
+                onClick={() => window.location.href = "/profile"}
+                variants={fadeIn("left", 0.8)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className='w-10 h-10 rounded-full bg-cover bg-center hover:cursor-pointer'
+                style={{
+                  backgroundImage: `url('${API_BASE_URL}${encodeURI(user?.profileImageUrl)}')`
+                }}
+              />
+            ) : (
+              <motion.div
+                onClick={() => window.location.href = "/profile"}
+                variants={fadeIn("left", 0.8)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className='text-4xl text-gray-600 hover:text-black cursor-pointer'
+              >
+                <FaUserCircle />
+              </motion.div>
+            )}
+
             {/* <a href="#contact" className="text-black hover:text-sky-400 transition-colors">Contact</a> */}
 
 

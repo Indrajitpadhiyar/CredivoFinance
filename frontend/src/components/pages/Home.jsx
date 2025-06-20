@@ -67,7 +67,7 @@ const Home = () => {
                 THE BEST
               </span>
               <span className='text2 text-red-400 flex flex-col ml-20'>
-                INVESTMENT
+                MANAGEMENT
               </span>
               <span className='text3 mr-20 text-red-400'>PLATFORM</span>
             </h1>

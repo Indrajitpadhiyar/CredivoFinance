@@ -30,8 +30,8 @@ exports.getAllExpense = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const Expense = await Expense.find({ userId }).sort({ date: -1 });
-    res.json(Expense);
+    const expenses = await Expense.find({ userId }).sort({ date: -1 });
+    res.json(expenses);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -63,7 +63,7 @@ exports.downloadExpenseExcel = async (req, res) => {
     const ws = xlsx.utils.json_to_sheet(data);
     xlsx.utils.book_append_sheet(wb, ws, "Expense");
     xlsx.writeFile(wb, "Expense_data.xlsx");
-    res.download('Expense_data.xlsx');
+    res.download("Expense_data.xlsx");
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }

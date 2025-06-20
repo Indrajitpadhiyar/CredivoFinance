@@ -1,6 +1,7 @@
 import uploadImage from "./uploadImage"; 
 import moment from "moment";
 
+
 export const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
@@ -35,6 +36,19 @@ export const preparIncomeBarChartData = (data = []) => {
     month:moment(item?.date).format("Do MMM"),
     source: item.source,
     amount: item.amount,
+  }));
+
+  return chartData;
+};
+
+export const preparExpenseLinrChartData = (data = []) => {
+  const sortedData = [...data].sort(
+    (a,b)=> new Date(a.date) - new Date(b.date)
+  )
+  const chartData = sortedData.map((item) => ({
+    month:moment(item?.date).format("Do MMM"),
+    amount: item?.amount,
+    category: item?.category,
   }));
 
   return chartData;

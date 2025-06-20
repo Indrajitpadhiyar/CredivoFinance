@@ -17,8 +17,6 @@ const Login = () => {
   const [email, setemail] = useState("")
   const [error, seterror] = useState(null)
 
-
-
   const handelLogin = async (e) => {
     e.preventDefault();
 
@@ -45,7 +43,7 @@ const Login = () => {
 
       if (token) {
         localStorage.setItem('token', token);
-        navigate("/home"); // Redirect to dashboard or home page
+        navigate("/profile"); // Redirect to dashboard or profile page
       }
     } catch (error) {
       console.error("Login failed:", error.response?.data);
