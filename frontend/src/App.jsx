@@ -4,14 +4,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Login from './components/login-signup/Login';
 import Profile from './components/pages/DashBoard/dashBoard/Profile';
-import Register from './components/login-signup/Register';
+import Register from './components/login-signup/register';
 import UserProvider from './context/useContext';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Expense from './components/pages/Expense';
 import toast, { Toaster } from 'react-hot-toast';
-import Root from './components/pages/Root';
-import Income from './components/pages/Income';
 
 
 
