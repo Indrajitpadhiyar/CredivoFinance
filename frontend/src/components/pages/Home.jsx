@@ -2,7 +2,6 @@ import { useGSAP } from '@gsap/react';
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
 import gsap from 'gsap';
-
 import Canvas from './Canvas';
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "motion/react"
