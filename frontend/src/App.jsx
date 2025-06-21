@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import Login from './components/login-signup/Login';
 import Profile from './components/pages/DashBoard/dashBoard/Profile';
 import Register from './components/login-signup/Register'; 
-import UserProvider from './context/UseContext';
+import UserProvider from './context/useContext';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Expense from './components/pages/Expense';
