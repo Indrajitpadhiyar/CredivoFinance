@@ -12,7 +12,7 @@ import RecentTransactions from './RecentTransactions'
 import FinanceOverView from './FinanceOverView'
 import ExpenseTransactions from './ExpenseTransactions'
 import Last30DaysExpense from './Last30DaysExpense'
-import Navbar from "../../../Navbar/navbar"; 
+import Navbar from "@/components/Navbar/navbar";
 import RecentIncomeWithChart from './RecentIncomeWithChart'
 import RecentIncome from './RecentIncome'
 
