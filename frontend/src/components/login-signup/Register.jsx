@@ -8,7 +8,7 @@ import { API_PATHS } from '../../utils/apiPath';
 import { uploadImage } from '../../utils/helper';
 
 
-import { UserContext } from '../../context/useContext';
+import { UserContext } from '../../context/UseContext';
 
 const Register = () => {
     const [ShowPassword, setShowPassword] = useState(false)
