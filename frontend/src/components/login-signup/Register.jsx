@@ -8,6 +8,7 @@ import { API_PATHS } from '../../utils/apiPath';
 import { uploadImage } from '../../utils/helper';
 
 
+import UserProvider from "../../context/UseContext";
 import { UserContext } from '../../context/useContext';
 
 const Register = () => {
