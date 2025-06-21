@@ -2,7 +2,7 @@ import { useGSAP } from '@gsap/react';
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation';
 import gsap from 'gsap';
-import Navbar from '../Navbar/navbar';
+
 import Canvas from './Canvas';
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "motion/react"
@@ -10,6 +10,7 @@ import { fadeIn } from "../../assets/motion";
 import Marquee from '../Marquee';
 import MoneyEffect from './MoneyEffect';
 import { useEffect, useRef } from 'react';
+import Navbar from '../Navbar/Navbar';
 
 // import HomePageAnimation from './HomePageAnimation';
 
@@ -59,7 +60,7 @@ const Home = () => {
 
       <div className='w-full overflow-x-hidden main'>
 
-        <Navbar />  
+        <Navbar />
         <div className='flex w-full h-screen justify-center items-center flex-col overflow-hidden '>
           <div className='w-[80%] h-[35%]  flex  justify-center'>
             <h1 className='text-7xl font-thin flex gap-3 flex-col'>
