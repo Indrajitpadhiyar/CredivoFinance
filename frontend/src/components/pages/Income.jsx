@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/Navbar'
 import { useState } from 'react'
 import IncomeOverview from '../Income/IncomeOverview'
 import { API_PATHS } from '../../utils/apiPath'
