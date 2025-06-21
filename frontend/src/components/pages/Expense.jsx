@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { API_PATHS } from '../../utils/apiPath'
 import axiosInstance from '../../utils/axiosinstance'
 import { toast } from 'react-hot-toast'
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from '../Navbar/Navbar'
 import ExpenseOverView from '../Expense/ExpenseOverView'
 import Modal from '../Modal'
 import AddExpenseForm from '../Expense/AddExpenseForm'
