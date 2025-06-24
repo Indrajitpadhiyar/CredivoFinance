@@ -53,7 +53,7 @@ function App() {
                 <Route path='/' element={<Root />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
+                 <Route path="/register" element={<Register />} />
                 <Route path='/Profile' element={<Profile />} />
                 <Route path='/Income' element={<Income />} />
                 <Route path='/dashboard' element={<FullPageDashboard />} />
