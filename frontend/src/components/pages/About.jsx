@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Users, TrendingUp, FileText, CreditCard, Phone, MessageSquare, BarChart2, Settings, Lock, Briefcase, Smartphone, Star, CheckCircle, ArrowRight } from 'lucide-react';
-import Navbar from '../Navbar/navbar';
+import Navbar from '../Navbar/Navbar';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../../assets/motion';
 import { textVariant } from '../../assets/motion';
