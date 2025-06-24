@@ -4,7 +4,7 @@ import { fadeIn } from "../../assets/motion";
 import { API_BASE_URL } from '../../utils/apiPath';
 import { useUserAuth } from '../Hooks/UseUSerAuth';
 import { useContext } from 'react'
-import { UserContext } from '../../context/useContext';
+import { UserContext } from '../../context/UseContext';
 import { FaUserCircle } from 'react-icons/fa'
 
 const Navbar = () => {
