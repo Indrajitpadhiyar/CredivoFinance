@@ -9,7 +9,7 @@ import { fadeIn } from "../../assets/motion";
 import Marquee from '../Marquee';
 import MoneyEffect from './MoneyEffect';
 import { useEffect, useRef } from 'react';
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from "@/components/Navbar/Navbar";
 
 // import HomePageAnimation from './HomePageAnimation';
 
