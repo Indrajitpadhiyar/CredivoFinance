@@ -128,16 +128,6 @@ const Home = () => {
 
         {/* secction2 */}
 
-
-        <div className=' w-full  h-[350vh]'>
-
-          <div className='w-full sticky top-0 left-0 z-50 '>
-
-            <Canvas />
-
-          </div>
-        </div>
-
         {/* marquee effect starrt */}
         <Marquee />
         {/* marquee effect end */}
