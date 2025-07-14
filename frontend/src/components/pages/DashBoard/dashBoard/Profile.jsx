@@ -1,98 +1,111 @@
-import React, { use, useContext } from 'react'
-import { SIDE_MANU_DATA } from '../../../../utils/data'
+import React, { useContext, useState } from 'react';
+import { SIDE_MANU_DATA } from '../../../../utils/data';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
 import { API_BASE_URL } from "../../../../utils/apiPath";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
 import DashBoard from './DashBoard';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Profile = () => {
-
-  useUserAuth(); // Custom hook to fetch user data and handle authentication
+  useUserAuth();
   const { user, clearUser } = useContext(UserContext);
-
-  // console.log("User context:", user);
-
-
   const navigate = useNavigate();
 
-  const hacdleClick = (Route) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(prev => !prev);
+
+  const handleClick = (Route) => {
     if (Route === "Logout") {
-      // Clear user data and navigate to login page
       handleLogout();
       return;
     }
     navigate(Route);
   };
-  console.log("User:", user);
+
   const handleLogout = () => {
     localStorage.clear();
     clearUser();
     navigate("/login");
   };
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.2, // control line-by-line delay
-      },
-    },
-  };
 
   return (
-    <div className='flex h-screen w-full gap-2 items-center p-2 '>
-      <div className="h-[97%] w-[20%] rounded-2xl flex flex-col overflow-hidden items-center shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20">
-        <div className=''>
+    <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2">
 
-          <div>
+      {/* Sidebar */}
+      <div className="w-full md:w-[20%] rounded-2xl flex flex-col items-center shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 p-4">
+        {/* Profile Image */}
+        {user?.profileImageUrl && (
+          <motion.img
+            variants={fadeIn("down", 0.1)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: true }}
+            src={`${API_BASE_URL}${encodeURI(user?.profileImageUrl)}`}
+            alt="Profile"
+            className="w-32 h-32 object-cover rounded-full mx-auto mt-4"
+          />
+        )}
 
-            {user?.profileImageUrl ? (
-              <motion.img
-                variants={fadeIn("down", 0.1)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: true }}
-                src={`${API_BASE_URL}${encodeURI(user?.profileImageUrl)}`}
-                alt="Profile"
-                className='w-40  mt-10 bg-amber-400 h-40 object-cover  rounded-bl-4xl rounded-tr-4xl'
-              />
+        {/* User Name */}
+        <motion.h5
+          variants={fadeIn("right", 0.5)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: true }}
+          className="mt-4 text-xl font-semibold text-center uppercase"
+        >
+          {user?.fullName || "User Name"}
+        </motion.h5>
 
-
-            ) : <></>}
-            <motion.h5
-              variants={fadeIn("right", 0.5)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: true }}
-              className='mt-5 uppercase text-xl font-semibold'>
-              {user?.fullName || "User Name"}
-            </motion.h5>
-
-
-            {SIDE_MANU_DATA.map((item) => (
-              <motion.button
-                key={item.id}
-                variants={fadeIn("right", item.id * 0.4)} // add delay based on index
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className='w-full flex mt-5 items-center gap-2 p-2 hover:bg-gray-200 rounded-lg'
-                onClick={() => hacdleClick(item.path)}
-              >
-                <item.icon className='text-xl' />
-                <span>{item.lable}</span>
-              </motion.button>
-            ))}
-          </div>
+        {/* Toggle Button for Mobile */}
+        <div className="md:hidden mt-4">
+          <button
+            onClick={toggleMenu}
+            className="flex items-center gap-2 text-blue-600 hover:text-black"
+          >
+            {isMenuOpen ? "Hide Menu" : "Show Menu"}
+            {isMenuOpen ? <FaChevronUp /> : <FaChevronDown />}
+          </button>
         </div>
+
+        {/* Sidebar Menu */}
+        <AnimatePresence>
+          {(isMenuOpen || window.innerWidth >= 768) && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-full mt-4"
+            >
+              {SIDE_MANU_DATA.map((item) => (
+                <motion.button
+                  key={item.id}
+                  variants={fadeIn("right", item.id * 0.3)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="w-full flex items-center gap-2 p-2 mt-2 hover:bg-gray-200 rounded-lg"
+                  onClick={() => handleClick(item.path)}
+                >
+                  <item.icon className="text-xl" />
+                  <span>{item.lable}</span>
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <div className='h-[97%] w-[90%] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 overflow-hidden'>
+
+      {/* Main Dashboard Content */}
+      <div className="w-full md:w-[80%] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 overflow-hidden overflow-y-scroll">
         <DashBoard />
       </div>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

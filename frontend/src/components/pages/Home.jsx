@@ -1,107 +1,86 @@
 import { useGSAP } from '@gsap/react';
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import gsap from 'gsap';
-import Canvas from './Canvas';
 import { FaLocationArrow } from "react-icons/fa";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 import { fadeIn } from "../../assets/motion";
-import Marquee from '../Marquee';
-import MoneyEffect from './MoneyEffect';
-import { useEffect, useRef } from 'react';
 import Navbar from "@/components/Navbar/Navbar";
 
-// import HomePageAnimation from './HomePageAnimation';
-
 const Home = () => {
-
-  // const locomotiveScroll = new LocomotiveScroll();
-
   const moneyRef = useRef(null);
+
   useGSAP(() => {
     gsap.from('.text1', {
       opacity: 0,
       duration: 1,
       x: -100,
-    })
+    });
     gsap.from('.text2', {
       opacity: 0,
       duration: 1,
       x: 100,
-    })
+    });
     gsap.from('.text3', {
       opacity: 0,
       duration: 1,
       x: -100,
-    })
-    const Home = ({ setShowCursor }) => {
-      const moneyRef = useRef(null);
+    });
+  });
 
-
-      useEffect(() => {
-        const onScroll = () => {
-          if (!moneyRef.current) return;
-
-          const rect = moneyRef.current.getBoundingClientRect();
-          const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-
-          setShowCursor(!isInView); // 👈 hide cursor if MoneyEffect is in view
-        };
-
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-      }, [setShowCursor]);
-
-    }
-  })
   return (
     <>
-
       <div className='w-full overflow-x-hidden main'>
-
         <Navbar />
-        <div className='flex w-full h-screen justify-center items-center flex-col overflow-hidden '>
-          <div className='w-[80%] h-[35%]  flex  justify-center'>
-            <h1 className='text-7xl font-thin flex gap-3 flex-col'>
+
+        {/* Hero Section */}
+        <div className='flex w-full h-screen justify-center items-center flex-col overflow-hidden px-4'>
+          <div className='w-full sm:w-[80%] h-[35%] flex justify-center items-center'>
+            <h1 className='text-4xl sm:text-7xl font-thin flex gap-3 flex-col text-center sm:text-left'>
               <span className='text1'>
                 THE BEST
               </span>
-              <span className='text2 text-red-400 flex flex-col ml-20'>
+              <span className='text2 text-red-400 sm:ml-20'>
                 MANAGEMENT
               </span>
-              <span className='text3 mr-20 text-red-400'>PLATFORM</span>
+              <span className='text3 sm:mr-20 text-red-400'>PLATFORM</span>
             </h1>
           </div>
-          <h2 className='text-2xl mt-10 '>
+
+          {/* Typing Text */}
+          <h2 className='text-center text-lg sm:text-2xl mt-10 px-4 sm:px-0'>
             <TypeAnimation
               sequence={[
-                'Grow your wealth with smart ,secure , and simplified investing— trusted by thousands.',
+                'Grow your wealth with smart, secure, and simplified investing—trusted by thousands.',
                 100,
               ]}
               wrapper="span"
               repeat={Infinity}
               style={{ fontSize: '1em', display: 'inline-block' }}
-              className='text-2xl '
+              className='text-inherit'
             />
           </h2>
+
+          {/* CTA Button */}
           <motion.button
             variants={fadeIn("up", 1)}
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: true }}
-            className='bg-orange-500 font-bold text-white px-4 py-2 rounded-md hover:bg-red-600 mt-10'>
+            className='bg-orange-500 font-bold text-white px-6 py-3 rounded-md hover:bg-red-600 mt-10 transition duration-300'
+          >
             JOIN NOW
           </motion.button>
 
-          {/* info bottome bar */}
-
-          <div className='w-full  p-1 mt-20 flex   justify-around  font-semibold'>
+          {/* Info Bottom Bar */}
+          <div className='w-full mt-20 flex flex-col sm:flex-row sm:justify-around items-center gap-6 font-semibold px-4'>
             <motion.div
               variants={fadeIn("right", 0.5)}
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              className='text-gray-500 px-4 py-2'>
+              className='text-gray-500 text-center sm:text-left'
+            >
               <h4>For Public And Private Use</h4>
             </motion.div>
             <motion.div
@@ -109,7 +88,8 @@ const Home = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              className='text-gray-500 px-4 py-2 '>
+              className='text-gray-500 text-center sm:text-left'
+            >
               <h4>Form the Manage your investments</h4>
             </motion.div>
             <motion.div
@@ -117,34 +97,24 @@ const Home = () => {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: true }}
-              className='flex justify-center items-center gap-4'>
-              <h4 className='border px-4 py-2 rounded-4xl  hover:bg-black cursor-pointer hover:text-white transform duration-300'>Start Now</h4>
+              className='flex justify-center items-center gap-3'
+            >
+              <h4 className='border px-4 py-2 rounded-full hover:bg-black cursor-pointer hover:text-white transition duration-300 text-sm sm:text-base'>
+                Start Now
+              </h4>
               <FaLocationArrow />
             </motion.div>
           </div>
         </div>
 
-        {/* info bottome bar end */}
-
-        {/* secction2 */}
-
-        {/* marquee effect starrt */}
-        <Marquee />
-        {/* marquee effect end */}
-
-        {/* money page effect */}
-        <div className='w-full h-[250vh]' ref={moneyRef}>
-          <div className='w-full sticky top-0 left-0 z-50 '>
-            <MoneyEffect />
-          </div>
-        </div>
-        {/* money page effect end */}
-
+        {/* Footer */}
         <footer id="contact" className="py-16 bg-slate-900 border-t border-slate-700 relative z-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
               <div>
-                <h3 className="text-2xl font-bold text-sky-400 mb-4"><img src="image/CF_LOGO_PNG.png" alt="logo" className="h-10 w-40" /></h3>
+                <h3 className="text-2xl font-bold text-sky-400 mb-4">
+                  <img src="image/CF_LOGO_PNG.png" alt="logo" className="h-10 w-40" />
+                </h3>
                 <p className="text-slate-400 text-sm">
                   Your trusted partner in financial growth and security. We provide cutting-edge tools and expert advice to help you achieve your financial goals.
                 </p>
@@ -177,13 +147,15 @@ const Home = () => {
               </div>
             </div>
             <div className="border-t border-slate-700 pt-8 text-center">
-              <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} Finamore. All rights reserved. Built with React & Tailwind CSS.</p>
+              <p className="text-slate-500 text-sm">
+                &copy; {new Date().getFullYear()} Finamore. All rights reserved. Built with React & Tailwind CSS.
+              </p>
             </div>
           </div>
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
