@@ -80,7 +80,7 @@ const Navbar = () => {
             <div className="md:hidden flex items-center">
               <button onClick={toggleSidebar}>
                 <FaBars size={24} />
-              </button>
+              </button> 
             </div>
           </div>
         </div>
