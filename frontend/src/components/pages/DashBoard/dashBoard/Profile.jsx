@@ -1,24 +1,29 @@
+// Import required dependencies
 import React, { useContext, useState } from 'react';
-import { SIDE_MANU_DATA } from '../../../../utils/data';
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
-import { API_BASE_URL } from "../../../../utils/apiPath";
+import { API_BASE_URL } from '../../../../utils/apiPath';
+import { useNavigate } from 'react-router-dom';
+import { SIDE_MANU_DATA } from '../../../../utils/data';
+import DashBoard from './DashBoard';
+import { FaChevronDown, FaChevronUp, FaEdit } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
-import DashBoard from './DashBoard';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Profile = () => {
   useUserAuth();
-  const { user, clearUser } = useContext(UserContext);
+  const { user, updateUser, clearUser } = useContext(UserContext);
   const navigate = useNavigate();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newName, setNewName] = useState(user?.fullName);
+  const [newImage, setNewImage] = useState(null);
+
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
+  const toggleModal = () => setIsModalOpen(prev => !prev);
 
   const handleClick = (Route) => {
-    if (Route === "Logout") {
+    if (Route === 'Logout') {
       handleLogout();
       return;
     }
@@ -28,20 +33,85 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.clear();
     clearUser();
-    navigate("/login");
+    navigate('/login');
+  };
+
+  const handleProfileUpdate = () => {
+    const updatedUser = { ...user, fullName: newName };
+    if (newImage) {
+      updatedUser.profileImageUrl = URL.createObjectURL(newImage);
+    }
+    updateUser(updatedUser);
+    toggleModal();
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2">
+    <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2 relative">
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            className="bg-white p-6 rounded-xl w-96 max-w-full shadow-xl"
+          >
+            <h2 className="text-lg font-semibold mb-4 text-center">Edit Profile</h2>
+            <div className="flex flex-col gap-4">
+              <input
+                type="text"
+                className="p-2 border rounded-md"
+                placeholder="Enter Name"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+              />
+
+              <label
+                htmlFor="image-upload"
+                className="w-full h-32 border-2 border-dashed rounded-md flex items-center justify-center cursor-pointer text-gray-500 hover:border-blue-500 overflow-hidden"
+              >
+                {newImage ? (
+                  <img
+                    src={URL.createObjectURL(newImage)}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span>Click to upload image</span>
+                )}
+                <input
+                  type="file"
+                  id="image-upload"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => setNewImage(e.target.files[0])}
+                />
+              </label>
+
+              <button
+                onClick={handleProfileUpdate}
+                className="bg-blue-600 text-white rounded-md py-2 hover:bg-blue-700"
+              >
+                Save Changes
+              </button>
+              <button
+                onClick={toggleModal}
+                className="text-gray-600 text-sm underline"
+              >
+                Cancel
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       {/* Sidebar */}
       <div className="w-full md:w-[20%] rounded-2xl flex flex-col items-center shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 p-4">
-        {/* Profile Image */}
         {user?.profileImageUrl && (
           <motion.img
-            variants={fadeIn("down", 0.1)}
+            variants={fadeIn('down', 0.1)}
             initial="hidden"
-            whileInView={"show"}
+            whileInView={'show'}
             viewport={{ once: true }}
             src={`${API_BASE_URL}${encodeURI(user?.profileImageUrl)}`}
             alt="Profile"
@@ -49,29 +119,33 @@ const Profile = () => {
           />
         )}
 
-        {/* User Name */}
         <motion.h5
-          variants={fadeIn("right", 0.5)}
+          variants={fadeIn('right', 0.5)}
           initial="hidden"
-          whileInView={"show"}
+          whileInView={'show'}
           viewport={{ once: true }}
           className="mt-4 text-xl font-semibold text-center uppercase"
         >
-          {user?.fullName || "User Name"}
+          {user?.fullName || 'User Name'}
         </motion.h5>
 
-        {/* Toggle Button for Mobile */}
+        <button
+          onClick={toggleModal}
+          className="mt-2 flex items-center text-sm text-blue-600 hover:text-blue-800 gap-1"
+        >
+          <FaEdit /> Edit Profile
+        </button>
+
         <div className="md:hidden mt-4">
           <button
             onClick={toggleMenu}
             className="flex items-center gap-2 text-blue-600 hover:text-black"
           >
-            {isMenuOpen ? "Hide Menu" : "Show Menu"}
+            {isMenuOpen ? 'Hide Menu' : 'Show Menu'}
             {isMenuOpen ? <FaChevronUp /> : <FaChevronDown />}
           </button>
         </div>
 
-        {/* Sidebar Menu */}
         <AnimatePresence>
           {(isMenuOpen || window.innerWidth >= 768) && (
             <motion.div
@@ -84,7 +158,7 @@ const Profile = () => {
               {SIDE_MANU_DATA.map((item) => (
                 <motion.button
                   key={item.id}
-                  variants={fadeIn("right", item.id * 0.3)}
+                  variants={fadeIn('right', item.id * 0.3)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
@@ -100,7 +174,7 @@ const Profile = () => {
         </AnimatePresence>
       </div>
 
-      {/* Main Dashboard Content */}
+      {/* Main Dashboard */}
       <div className="w-full md:w-[80%] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 overflow-hidden overflow-y-scroll">
         <DashBoard />
       </div>
