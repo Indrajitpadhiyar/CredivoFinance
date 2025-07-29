@@ -19,6 +19,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newName, setNewName] = useState(user?.fullName || '');
   const [newImage, setNewImage] = useState(null);
+  const [loading, setLoading] = useState(false); // NEW
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
@@ -38,90 +39,99 @@ const Profile = () => {
   };
 
   const handleProfileUpdate = async () => {
+    setLoading(true);
     try {
       let imageUrl = user.profileImageUrl;
 
-      // If new image is selected, upload it
       if (newImage) {
         const uploadRes = await uploadImage(newImage);
         imageUrl = uploadRes.imageUrl;
       }
 
-      // New data to update
       const updatedUserData = {
         fullName: newName,
         profileImageUrl: imageUrl,
       };
 
-      // Call backend with correct URL
       await axiosInstance.put('/api/v1/auth/update-user', updatedUserData);
-
       const res = await axiosInstance.get('/api/v1/auth/user');
-
       const updatedUser = res.data.user;
 
-      // Update context + localStorage
       updateUser(updatedUser);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      localStorage.setItem('user', JSON.stringify(updatedUser));
 
       toggleModal();
     } catch (error) {
-      console.error("Profile update failed", error.message);
-      alert("Profile update failed: " + error.message);
+      console.error('Profile update failed', error.message);
+      alert('Profile update failed: ' + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2 relative">
-      {/* Modal for editing profile */}
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            className="bg-white p-6 rounded-xl w-96 max-w-full shadow-xl"
+            className="bg-white p-6 rounded-xl w-96 max-w-full shadow-xl flex flex-col items-center justify-center"
           >
-            <h2 className="text-lg font-semibold mb-4 text-center">Edit Profile</h2>
-            <div className="flex flex-col gap-4">
-              <input
-                type="text"
-                className="p-2 border rounded-md"
-                placeholder="Enter Name"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-              />
-              <label
-                htmlFor="image-upload"
-                className="w-full h-32 border-2 border-dashed rounded-md flex items-center justify-center cursor-pointer text-gray-500 hover:border-blue-500 overflow-hidden"
-              >
-                {newImage ? (
-                  <img
-                    src={URL.createObjectURL(newImage)}
-                    alt="Preview"
-                    className="w-full h-full object-cover"
+            {loading ? (
+              // Loader from Uiverse.io
+              <div className="w-32 aspect-square rounded-full relative flex justify-center items-center animate-[spin_3s_linear_infinite] z-40 bg-[conic-gradient(white_0deg,white_300deg,transparent_270deg,transparent_360deg)] before:animate-[spin_2s_linear_infinite] before:absolute before:w-[60%] before:aspect-square before:rounded-full before:z-[80] before:bg-[conic-gradient(white_0deg,white_270deg,transparent_180deg,transparent_360deg)] after:absolute after:w-3/4 after:aspect-square after:rounded-full after:z-[60] after:animate-[spin_3s_linear_infinite] after:bg-[conic-gradient(#065f46_0deg,#065f46_180deg,transparent_180deg,transparent_360deg)]">
+                <span className="absolute w-[85%] aspect-square rounded-full z-[60] animate-[spin_5s_linear_infinite] bg-[conic-gradient(#34d399_0deg,#34d399_180deg,transparent_180deg,transparent_360deg)]"></span>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-lg font-semibold mb-4 text-center">Edit Profile</h2>
+                <div className="flex flex-col gap-4 w-full">
+                  <input
+                    type="text"
+                    className="p-2 border rounded-md"
+                    placeholder="Enter Name"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
                   />
-                ) : (
-                  <span>Click to upload image</span>
-                )}
-                <input
-                  type="file"
-                  id="image-upload"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => setNewImage(e.target.files[0])}
-                />
-              </label>
-              <button
-                onClick={handleProfileUpdate}
-                className="bg-blue-600 text-white rounded-md py-2 hover:bg-blue-700"
-              >
-                Save Changes
-              </button>
-              <button onClick={toggleModal} className="text-gray-600 text-sm underline">
-                Cancel
-              </button>
-            </div>
+                  <label
+                    htmlFor="image-upload"
+                    className="w-full h-32 border-2 border-dashed rounded-md flex items-center justify-center cursor-pointer text-gray-500 hover:border-blue-500 overflow-hidden"
+                  >
+                    {newImage ? (
+                      <img
+                        src={URL.createObjectURL(newImage)}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span>Click to upload image</span>
+                    )}
+                    <input
+                      type="file"
+                      id="image-upload"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => setNewImage(e.target.files[0])}
+                    />
+                  </label>
+                  <button
+                    onClick={handleProfileUpdate}
+                    className="bg-blue-600 text-white rounded-md py-2 hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
+                  >
+                    Save Changes
+                  </button>
+                  <button
+                    onClick={toggleModal}
+                    className="text-gray-600 text-sm underline"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            )}
           </motion.div>
         </div>
       )}
@@ -150,12 +160,12 @@ const Profile = () => {
         </motion.h5>
         <button
           onClick={toggleModal}
-          className="mt-2 flex items-center text-sm text-blue-600 hover:text-blue-800 gap-1"
+          className="mt-2 flex items-center text-sm text-blue-600 hover:text-blue-800 gap-1 cursor-pointer"
         >
           <FaEdit /> Edit Profile
         </button>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Toggle */}
         <div className="md:hidden mt-4">
           <button
             onClick={toggleMenu}
@@ -166,7 +176,7 @@ const Profile = () => {
           </button>
         </div>
 
-        {/* Sidebar Menu Items */}
+        {/* Sidebar Items */}
         <AnimatePresence>
           {(isMenuOpen || window.innerWidth >= 768) && (
             <motion.div
@@ -195,7 +205,7 @@ const Profile = () => {
         </AnimatePresence>
       </div>
 
-      {/* Main Dashboard */}
+      {/* Dashboard Section */}
       <div className="w-full md:w-[80%] rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 overflow-hidden overflow-y-scroll">
         <DashBoard />
       </div>
