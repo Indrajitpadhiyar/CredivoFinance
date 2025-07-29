@@ -1,26 +1,29 @@
-import React from 'react'
-import { useState, useContext } from 'react'
+import React, { createContext, useState } from "react";
 
-export const UserContext = React.createContext();
+export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        const stored = localStorage.getItem("user");
+        return stored ? JSON.parse(stored) : null;
+    });
 
-    //function to update user data
     const updateUser = (userData) => {
         setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
     };
 
-    //function to clear user data (e.g., on logout)
     const clearUser = () => {
         setUser(null);
-        localStorage.removeItem('token'); // Clear token from local storage
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
     };
+
     return (
         <UserContext.Provider value={{ user, updateUser, clearUser }}>
             {children}
         </UserContext.Provider>
     );
-}
+};
 
 export default UserProvider;

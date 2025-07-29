@@ -1,4 +1,3 @@
-// Import required dependencies
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
@@ -9,6 +8,8 @@ import DashBoard from './DashBoard';
 import { FaChevronDown, FaChevronUp, FaEdit } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
+import uploadImage from '../../../../utils/uploadImage';
+import axiosInstance from '../../../../utils/axiosinstance';
 
 const Profile = () => {
   useUserAuth();
@@ -16,18 +17,18 @@ const Profile = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newName, setNewName] = useState(user?.fullName);
+  const [newName, setNewName] = useState(user?.fullName || '');
   const [newImage, setNewImage] = useState(null);
 
-  const toggleMenu = () => setIsMenuOpen(prev => !prev);
-  const toggleModal = () => setIsModalOpen(prev => !prev);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   const handleClick = (Route) => {
     if (Route === 'Logout') {
       handleLogout();
-      return;
+    } else {
+      navigate(Route);
     }
-    navigate(Route);
   };
 
   const handleLogout = () => {
@@ -36,18 +37,41 @@ const Profile = () => {
     navigate('/login');
   };
 
-  const handleProfileUpdate = () => {
-    const updatedUser = { ...user, fullName: newName };
-    if (newImage) {
-      updatedUser.profileImageUrl = URL.createObjectURL(newImage);
+  const handleProfileUpdate = async () => {
+    try {
+      let imageUrl = user.profileImageUrl;
+
+      // If new image is selected, upload it
+      if (newImage) {
+        const uploadRes = await uploadImage(newImage);
+        imageUrl = uploadRes.imageUrl;
+      }
+
+      // New data to update
+      const updatedUserData = {
+        fullName: newName,
+        profileImageUrl: imageUrl,
+      };
+
+      // Call backend with correct URL
+      const res = await axiosInstance.put('/api/v1/auth/update-user', updatedUserData);
+
+      const updatedUser = res.data.user;
+
+      // Update context + localStorage
+      updateUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      toggleModal();
+    } catch (error) {
+      console.error("Profile update failed", error.message);
+      alert("Profile update failed: " + error.message);
     }
-    updateUser(updatedUser);
-    toggleModal();
   };
 
   return (
     <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2 relative">
-
+      {/* Modal for editing profile */}
       {isModalOpen && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <motion.div
@@ -65,7 +89,6 @@ const Profile = () => {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
               />
-
               <label
                 htmlFor="image-upload"
                 className="w-full h-32 border-2 border-dashed rounded-md flex items-center justify-center cursor-pointer text-gray-500 hover:border-blue-500 overflow-hidden"
@@ -87,17 +110,13 @@ const Profile = () => {
                   onChange={(e) => setNewImage(e.target.files[0])}
                 />
               </label>
-
               <button
                 onClick={handleProfileUpdate}
                 className="bg-blue-600 text-white rounded-md py-2 hover:bg-blue-700"
               >
                 Save Changes
               </button>
-              <button
-                onClick={toggleModal}
-                className="text-gray-600 text-sm underline"
-              >
+              <button onClick={toggleModal} className="text-gray-600 text-sm underline">
                 Cancel
               </button>
             </div>
@@ -111,24 +130,22 @@ const Profile = () => {
           <motion.img
             variants={fadeIn('down', 0.1)}
             initial="hidden"
-            whileInView={'show'}
+            whileInView="show"
             viewport={{ once: true }}
             src={`${API_BASE_URL}${encodeURI(user?.profileImageUrl)}`}
             alt="Profile"
             className="w-32 h-32 object-cover rounded-full mx-auto mt-4"
           />
         )}
-
         <motion.h5
           variants={fadeIn('right', 0.5)}
           initial="hidden"
-          whileInView={'show'}
+          whileInView="show"
           viewport={{ once: true }}
           className="mt-4 text-xl font-semibold text-center uppercase"
         >
           {user?.fullName || 'User Name'}
         </motion.h5>
-
         <button
           onClick={toggleModal}
           className="mt-2 flex items-center text-sm text-blue-600 hover:text-blue-800 gap-1"
@@ -136,6 +153,7 @@ const Profile = () => {
           <FaEdit /> Edit Profile
         </button>
 
+        {/* Mobile Menu Toggle */}
         <div className="md:hidden mt-4">
           <button
             onClick={toggleMenu}
@@ -146,6 +164,7 @@ const Profile = () => {
           </button>
         </div>
 
+        {/* Sidebar Menu Items */}
         <AnimatePresence>
           {(isMenuOpen || window.innerWidth >= 768) && (
             <motion.div
