@@ -54,7 +54,9 @@ const Profile = () => {
       };
 
       // Call backend with correct URL
-      const res = await axiosInstance.put('/api/v1/auth/update-user', updatedUserData);
+      await axiosInstance.put('/api/v1/auth/update-user', updatedUserData);
+
+      const res = await axiosInstance.get('/api/v1/auth/user');
 
       const updatedUser = res.data.user;
 
