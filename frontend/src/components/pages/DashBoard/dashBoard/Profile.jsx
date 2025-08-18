@@ -5,7 +5,7 @@ import { API_BASE_URL } from '../../../../utils/apiPath';
 import { useNavigate } from 'react-router-dom';
 import { SIDE_MANU_DATA } from '../../../../utils/data';
 import DashBoard from './DashBoard';
-import { FaChevronDown, FaChevronUp, FaEdit } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp, FaEdit, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
 import uploadImage from '../../../../utils/uploadImage';
@@ -13,13 +13,14 @@ import axiosInstance from '../../../../utils/axiosinstance';
 
 const Profile = () => {
   useUserAuth();
+  const [isAnimating, setIsAnimating] = useState(false);
   const { user, updateUser, clearUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newName, setNewName] = useState(user?.fullName || '');
   const [newImage, setNewImage] = useState(null);
-  const [loading, setLoading] = useState(false); // NEW
+  const [loading, setLoading] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
@@ -69,8 +70,26 @@ const Profile = () => {
     }
   };
 
+  const handleBack = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      navigate(-1);
+    }, 400);
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen w-full gap-2 p-2 relative">
+
+      <button
+        onClick={handleBack}
+        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-3 py-2 
+             bg-blue-600 text-white rounded-lg shadow-md 
+             hover:bg-blue-700 transition"
+      >
+        <FaArrowLeft />
+      </button>
+
+
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 backdrop-blur-sm">
@@ -81,7 +100,6 @@ const Profile = () => {
             className="bg-white p-6 rounded-xl w-96 max-w-full shadow-xl flex flex-col items-center justify-center"
           >
             {loading ? (
-              // Loader from Uiverse.io
               <div className="w-32 aspect-square rounded-full relative flex justify-center items-center animate-[spin_3s_linear_infinite] z-40 bg-[conic-gradient(white_0deg,white_300deg,transparent_270deg,transparent_360deg)] before:animate-[spin_2s_linear_infinite] before:absolute before:w-[60%] before:aspect-square before:rounded-full before:z-[80] before:bg-[conic-gradient(white_0deg,white_270deg,transparent_180deg,transparent_360deg)] after:absolute after:w-3/4 after:aspect-square after:rounded-full after:z-[60] after:animate-[spin_3s_linear_infinite] after:bg-[conic-gradient(#065f46_0deg,#065f46_180deg,transparent_180deg,transparent_360deg)]">
                 <span className="absolute w-[85%] aspect-square rounded-full z-[60] animate-[spin_5s_linear_infinite] bg-[conic-gradient(#34d399_0deg,#34d399_180deg,transparent_180deg,transparent_360deg)]"></span>
               </div>
@@ -138,17 +156,30 @@ const Profile = () => {
 
       {/* Sidebar */}
       <div className="w-full md:w-[20%] rounded-2xl flex flex-col items-center shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md bg-white/30 z-20 p-4">
-        {user?.profileImageUrl && (
+
+        {/* Profile Image OR Initial Avatar */}
+        {user?.profileImageUrl ? (
           <motion.img
             variants={fadeIn('down', 0.1)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            src={`${API_BASE_URL}${encodeURI(user?.profileImageUrl)}`}
+            src={`${API_BASE_URL}${user.profileImageUrl}?t=${Date.now()}`}
             alt="Profile"
             className="w-32 h-32 object-cover rounded-full mx-auto mt-4"
           />
+        ) : (
+          <motion.div
+            variants={fadeIn('down', 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="w-32 h-32 rounded-full bg-blue-600 flex items-center justify-center text-white text-4xl font-bold mx-auto mt-4"
+          >
+            {user?.fullName ? user.fullName.charAt(0).toUpperCase() : "U"}
+          </motion.div>
         )}
+
         <motion.h5
           variants={fadeIn('right', 0.5)}
           initial="hidden"

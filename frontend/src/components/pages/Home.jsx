@@ -90,7 +90,7 @@ const Home = () => {
               viewport={{ once: true }}
               className='text-gray-500 text-center sm:text-left'
             >
-              <h4>Form the Manage your investments</h4>
+              <h4>Management of your investments</h4>
             </motion.div>
             <motion.div
               variants={fadeIn("right", 1.5)}

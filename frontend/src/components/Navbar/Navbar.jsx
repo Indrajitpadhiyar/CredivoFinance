@@ -4,7 +4,7 @@ import { fadeIn } from "../../assets/motion";
 import { API_BASE_URL } from '../../utils/apiPath';
 import { useUserAuth } from '../Hooks/UseUSerAuth';
 import { UserContext } from '../../context/UseContext';
-import { FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   useUserAuth(); // Fetch user
@@ -13,6 +13,14 @@ const Navbar = () => {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  // Function to get initial (if name exists)
+  const getInitial = () => {
+    if (user?.fullName) {
+      return user.fullName.charAt(0).toUpperCase();
+    }
+    return "U"; // Default
+  };
 
   return (
     <>
@@ -60,20 +68,19 @@ const Navbar = () => {
                 <span>Dashboard</span>
               </motion.a>
 
-              {user?.profileImageUrl ? (
-                <div
-                  onClick={() => window.location.href = "/profile"}
-                  className='w-10 h-10 rounded-full bg-cover bg-center hover:cursor-pointer'
-                  style={{ backgroundImage: `url('${API_BASE_URL}${encodeURI(user?.profileImageUrl)}')` }}
-                />
-              ) : (
-                <div
-                  onClick={() => window.location.href = "/profile"}
-                  className='text-4xl text-gray-600 hover:text-black cursor-pointer'
-                >
-                  <FaUserCircle />
-                </div>
-              )}
+              {/* Profile Section */}
+              <div onClick={() => window.location.href = "/profile"} className="cursor-pointer">
+                {user?.profileImageUrl ? (
+                  <div
+                    className='w-10 h-10 rounded-full bg-cover bg-center hover:cursor-pointer'
+                    style={{ backgroundImage: `url('${API_BASE_URL}${encodeURI(user?.profileImageUrl)}')` }}
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
+                    {getInitial()}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Hamburger Icon (Mobile) */}
@@ -107,6 +114,7 @@ const Navbar = () => {
             </a>
           ))}
 
+          {/* Profile in Sidebar */}
           <div onClick={() => window.location.href = "/profile"} className="mt-4 flex items-center space-x-2 cursor-pointer">
             {user?.profileImageUrl ? (
               <div
@@ -114,9 +122,11 @@ const Navbar = () => {
                 style={{ backgroundImage: `url('${API_BASE_URL}${encodeURI(user?.profileImageUrl)}')` }}
               />
             ) : (
-              <FaUserCircle size={32} className="text-gray-600 hover:text-black" />
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-lg font-bold">
+                {getInitial()}
+              </div>
             )}
-            <span className="text-black font-medium">Profile</span>
+            <span className="text-black font-medium">{user?.fullName || "User"}</span>
           </div>
         </nav>
       </div>
