@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import Input from '../Inputs/Input';
 import ProfileSelect from '../Inputs/ProfileSelect';
-import axiosInstance from '../../../../backend/utils/axiosinstance';
-import { validateEmail, uploadImage } from '../../../../backend/utils/helper';
+import axiosInstance from '../../../utils/axiosinstance';
+import { validateEmail, uploadImage } from '../../../utils/helper';
 import { useNavigate } from 'react-router-dom';
 import { API_PATHS } from '../../../../backend/utils/apiPath';
 import { UserContext } from '../../context/UseContext';
