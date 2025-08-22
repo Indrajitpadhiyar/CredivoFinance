@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const connectDb = require("./config/db");
+
+// Routes
 const authRoutes = require("./routes/authRoutes");
 const uploadRoutes = require("./routes/Upload");
 const incomeRoutes = require("./routes/incomeRoutes");
@@ -12,6 +14,7 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "*",
@@ -22,8 +25,10 @@ app.use(
 
 app.use(express.json());
 
+// DB connection
 connectDb();
 
+// API routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/image", uploadRoutes);
@@ -31,6 +36,15 @@ app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 
+// ------------------ Serve React Frontend ------------------
+app.use(express.static(path.join(__dirname, "build")));
+
+// Fallback route for React Router
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+// -----------------------------------------------------------
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`✅ Server is running on port ${PORT}`);
 });
