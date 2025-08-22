@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
-import { API_BASE_URL } from '../../../../../apiPath';
+import { API_BASE_URL } from '../../../../../utils/apiPath';
 import { useNavigate } from 'react-router-dom';
-import { SIDE_MANU_DATA } from '../../../../../../backend/utils/data';
+import { SIDE_MANU_DATA } from '../../../../../utils/data';
 import DashBoard from './DashBoard';
 import { FaChevronDown, FaChevronUp, FaEdit, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
-import uploadImage from '../../../../../../backend/utils/uploadImage';
-import axiosInstance from '../../../../../../backend/utils/axiosinstance';
+import uploadImage from '../../../../../utils/uploadImage';
+import axiosInstance from '../../../../../utils/axiosinstance';
 
 const Profile = () => {
   useUserAuth();
