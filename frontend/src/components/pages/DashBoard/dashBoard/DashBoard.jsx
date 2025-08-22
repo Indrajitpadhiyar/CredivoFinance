@@ -3,7 +3,7 @@ import { useUserAuth } from '../../../Hooks/UseUSerAuth'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axiosInstance from '../../../../../../backend/utils/axiosinstance'
-import { API_PATHS } from '../../../../../../backend/utils/apiPath'
+import { API_PATHS } from '../../../../../apiPath'
 import InfoCard from '../../../Card/InfoCard'
 import { IoMdCard } from 'react-icons/io';
 import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu'
