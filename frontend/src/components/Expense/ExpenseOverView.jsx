@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
-import { preparExpenseLinrChartData } from '../../../../backend/utils/helper'
+import { preparExpenseLinrChartData } from '../../../utils/helper'
 import CustomLineChart from '../pages/DashBoard/Chart/CustomLineChart'
 
 const ExpenseOverView = ({ transactions, onExpenseIncome }) => {
