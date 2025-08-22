@@ -4,7 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const connectDb = require("./config/db");
 
-// Routes
+// Import routes
 const authRoutes = require("./routes/authRoutes");
 const uploadRoutes = require("./routes/Upload");
 const incomeRoutes = require("./routes/incomeRoutes");
@@ -25,25 +25,26 @@ app.use(
 
 app.use(express.json());
 
-// DB connection
+// DB connect
 connectDb();
 
-// API routes
+// ---------------- API Routes ----------------
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/image", uploadRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+// --------------------------------------------
 
-// ------------------ Serve React Frontend ------------------
-app.use(express.static(path.join(__dirname, "build")));
+// ---------------- Serve React Frontend ----------------
+// IMPORTANT: ye hamesha API routes ke baad likhna
+app.use(express.static(path.join(__dirname, "../build")));
 
-// Fallback route for React Router
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
-// -----------------------------------------------------------
+// ------------------------------------------------------
 
 app.listen(PORT, () => {
   console.log(`✅ Server is running on port ${PORT}`);
