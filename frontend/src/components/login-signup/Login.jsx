@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 px-4 relative">
-      
+
       {/* Loader Overlay */}
       {loading && (
         <div className="absolute inset-0 z-30 flex items-center justify-center backdrop-blur-sm bg-white/20">
@@ -125,9 +125,9 @@ const Login = () => {
           {/* Sign Up */}
           <p className="text-center text-sm">
             Don't have an account?{' '}
-            <a href="/register" className="text-blue-700 underline">
+            <button className='text-blue-700 underline hover:text-blue-900' onClick={() => (window.location.href = '/register')}>
               Sign Up
-            </a>
+            </button>
           </p>
         </form>
       </div>
