@@ -13,7 +13,7 @@ const generateToken = (userId) => {
 // @route   POST /api/v1/auth/register
 exports.registerUser = async (req, res) => {
   try {
-    const { fullName, email, password } = req.body;
+    const { fullName, email, password, profileImageUrl } = req.body; // 👈 yaha include kar
 
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -30,6 +30,7 @@ exports.registerUser = async (req, res) => {
       fullName,
       email,
       password: hashedPassword,
+      profileImageUrl: profileImageUrl || null, // 👈 yaha save kar
     });
 
     const token = generateToken(user._id);
@@ -47,7 +48,7 @@ exports.registerUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
-};
+};  
 
 // @desc    Login user
 // @route   POST /api/v1/auth/login

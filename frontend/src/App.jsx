@@ -20,7 +20,7 @@ import {
 import FullPageDashboard from './components/pages/DashBoard/dashBoard/FullPageDashboard';
 import Income from './components/pages/Income';
 
-// ✅ Framer Motion imports
+
 import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
@@ -62,14 +62,13 @@ function App() {
 
 export default App
 
-// ✅ Wrapper for Routes with Framer Motion animations
 function AnimatedRoutes() {
   const location = useLocation();
 
   const pageTransition = {
-    initial: { x: -100, opacity: 0 },   // enter from left
-    animate: { x: 0, opacity: 1 },     // visible
-    exit: { x: -100, opacity: 0 },      // exit to left
+    initial: { x: -100, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: -100, opacity: 0 },      
     transition: { duration: 0.4 },
   };
 

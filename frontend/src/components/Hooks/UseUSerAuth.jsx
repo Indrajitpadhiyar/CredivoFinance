@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UseContext";
-import axiosInstance from "../../utils/axiosinstance";
-import { API_PATHS } from "../../utils/apiPath";
+import axiosInstance from "../../../../backend/utils/axiosinstance";
+import { API_PATHS } from "../../../../backend/utils/apiPath";
 
 const token = localStorage.getItem("auth_token");
 

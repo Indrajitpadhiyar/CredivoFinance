@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../utils/axiosinstance';
-import { API_PATHS } from '../../utils/apiPath';
-import { validateEmail } from '../../utils/helper';
+import axiosInstance from '../../../../backend/utils/axiosinstance';
+import { API_PATHS } from '../../../../backend/utils/apiPath';
+import { validateEmail } from '../../../../backend/utils/helper';
 
 const Login = () => {
   const navigate = useNavigate();

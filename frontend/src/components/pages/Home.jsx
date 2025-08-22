@@ -106,53 +106,6 @@ const Home = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer id="contact" className="py-16 bg-slate-900 border-t border-slate-700 relative z-100">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-              <div>
-                <h3 className="text-2xl font-bold text-sky-400 mb-4">
-                  <img src="image/CF_LOGO_PNG.png" alt="logo" className="h-10 w-40" />
-                </h3>
-                <p className="text-slate-400 text-sm">
-                  Your trusted partner in financial growth and security. We provide cutting-edge tools and expert advice to help you achieve your financial goals.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-slate-200 mb-4">Quick Links</h4>
-                <ul className="space-y-2">
-                  <li><a href="#about" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">About Us</a></li>
-                  <li><a href="#features" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Our Features</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Pricing Plans</a></li>
-                  <li><a href="#testimonials" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Testimonials</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-slate-200 mb-4">Support</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Contact Us</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">FAQs</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Help Center</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Live Chat</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-slate-200 mb-4">Legal</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Privacy Policy</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Terms of Service</a></li>
-                  <li><a href="#" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Cookie Policy</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-slate-700 pt-8 text-center">
-              <p className="text-slate-500 text-sm">
-                &copy; {new Date().getFullYear()} Finamore. All rights reserved. Built with React & Tailwind CSS.
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );

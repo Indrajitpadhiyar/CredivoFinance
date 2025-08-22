@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
-import { API_BASE_URL } from '../../../../utils/apiPath';
+import { API_BASE_URL } from '../../../../../../backend/utils/apiPath';
 import { useNavigate } from 'react-router-dom';
-import { SIDE_MANU_DATA } from '../../../../utils/data';
+import { SIDE_MANU_DATA } from '../../../../../../backend/utils/data';
 import DashBoard from './DashBoard';
 import { FaChevronDown, FaChevronUp, FaEdit, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '../../../../assets/motion';
-import uploadImage from '../../../../utils/uploadImage';
-import axiosInstance from '../../../../utils/axiosinstance';
+import uploadImage from '../../../../../../backend/utils/uploadImage';
+import axiosInstance from '../../../../../../backend/utils/axiosinstance';
 
 const Profile = () => {
   useUserAuth();
@@ -164,7 +164,11 @@ const Profile = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            src={`${API_BASE_URL}${user.profileImageUrl}?t=${Date.now()}`}
+            src={
+              user.profileImageUrl.startsWith("http")
+                ? `${user.profileImageUrl}?t=${Date.now()}`
+                : `${API_BASE_URL}${user.profileImageUrl}?t=${Date.now()}`
+            }
             alt="Profile"
             className="w-32 h-32 object-cover rounded-full mx-auto mt-4"
           />
