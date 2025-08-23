@@ -4,7 +4,7 @@ import ProfileSelect from '../Inputs/ProfileSelect';
 import axiosInstance from '../../../utils/axiosinstance';
 import { validateEmail, uploadImage } from '../../../utils/helper';
 import { useNavigate } from 'react-router-dom';
-import { API_PATHS } from '../../../../backend/utils/apiPath';
+import { API_PATHS } from '../../../utils/apiPath';
 import { UserContext } from '../../context/UseContext';
 
 const Register = () => {

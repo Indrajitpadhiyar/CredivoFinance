@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { API_PATHS } from '../../../../backend/utils/apiPath'
+import { API_PATHS } from '../../../utils/apiPath'
 import axiosInstance from '../../../utils/axiosinstance'
 import { toast } from 'react-hot-toast'
 import Navbar from '../Navbar/Navbar'

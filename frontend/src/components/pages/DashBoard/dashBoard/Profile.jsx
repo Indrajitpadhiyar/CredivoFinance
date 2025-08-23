@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../../../context/UseContext';
 import { useUserAuth } from '../../../Hooks/UseUSerAuth';
-import { API_BASE_URL } from '../../../../../../backend/utils/apiPath';
+import { API_BASE_URL } from '../../../../../utils/apiPath';
 import { useNavigate } from 'react-router-dom';
 import { SIDE_MANU_DATA } from '../../../../../utils/data';
 import DashBoard from './DashBoard';
