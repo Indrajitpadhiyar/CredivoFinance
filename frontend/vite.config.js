@@ -11,8 +11,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "public/build/_redirects", 
-          dest: "."                 
+          src: "public/build/_redirects",
+          dest: "."
         }
       ]
     })
@@ -22,4 +22,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1600, 
+  }
 });
