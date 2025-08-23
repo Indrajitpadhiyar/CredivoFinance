@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import { viteStaticCopy } from "vite-plugin-static-copy"; // ✅ Add this
+import { viteStaticCopy } from "vite-plugin-static-copy"; 
 
 export default defineConfig({
   plugins: [
@@ -11,8 +11,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "public/_redirects", // ✅ yaha se lega
-          dest: "."                 // ✅ dist/ me daalega
+          src: "public/build/_redirects", 
+          dest: "."                 
         }
       ]
     })
