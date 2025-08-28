@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://credivofinancebackend.onrender.com"; // Replace with your actual backend URL
+export const API_BASE_URL = "http://localhost:8000";
   // utils/apiPath.js
 
   export const API_PATHS = {

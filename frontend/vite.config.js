@@ -2,20 +2,24 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import { viteStaticCopy } from "vite-plugin-static-copy"; 
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    tailwindcss({
+      config: {
+        darkMode: "class", // 👈 ये सबसे जरूरी है
+      },
+    }),
     viteStaticCopy({
       targets: [
         {
           src: "public/build/_redirects",
-          dest: "."
-        }
-      ]
-    })
+          dest: ".",
+        },
+      ],
+    }),
   ],
   resolve: {
     alias: {
@@ -23,6 +27,6 @@ export default defineConfig({
     },
   },
   build: {
-    chunkSizeWarningLimit: 1600, 
-  }
+    chunkSizeWarningLimit: 1600,
+  },
 });

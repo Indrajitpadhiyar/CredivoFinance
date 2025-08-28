@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../../utils/apiPath';
 import { useUserAuth } from '../Hooks/UseUSerAuth';
 import { UserContext } from '../../context/UseContext';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import AiChatBox from '../pages/AiChatBox';
 
 const Navbar = () => {
   useUserAuth(); // Fetch user
@@ -42,7 +43,7 @@ const Navbar = () => {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex space-x-6 items-center">
-              {["Home", "About", "Income", "Expense"].map((item, i) => (
+              {["Home", "About","Income", "Expense"].map((item, i) => (
                 <motion.a
                   key={item}
                   variants={fadeIn("down", 0.2 + i * 0.1)}
@@ -56,6 +57,17 @@ const Navbar = () => {
                 </motion.a>
               ))}
 
+              <motion.button
+                onClick={() => window.location.href = "/AiChatbox"}
+                className="text-black hover:text-sky-400 transition-colors flex items-center space-x-2"
+                variants={fadeIn("down", 0.7)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: true }}
+              >
+                
+                <span>Manage With Ai</span>
+              </motion.button>
               <motion.a
                 href="/dashboard"
                 className="text-black hover:text-sky-400 transition-colors flex items-center space-x-2"

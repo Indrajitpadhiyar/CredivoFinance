@@ -19,6 +19,7 @@ import {
 } from "react-router-dom";
 import FullPageDashboard from './components/pages/DashBoard/dashBoard/FullPageDashboard';
 import Income from './components/pages/Income';
+import AiChatBox from './components/pages/AiChatBox';
 
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -87,7 +88,7 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path='/' element={<Navigate to='/login' />} />
+        <Route path='/' element={<Navigate to='/home' />} />
 
         <Route path='/home' element={<MotionWrapper><Home /></MotionWrapper>} />
         <Route path='/login' element={<MotionWrapper><Login /></MotionWrapper>} />
@@ -95,6 +96,7 @@ function AnimatedRoutes() {
         <Route path='/profile' element={<MotionWrapper><Profile /></MotionWrapper>} />
         <Route path='/income' element={<MotionWrapper><Income /></MotionWrapper>} />
         <Route path='/dashboard' element={<MotionWrapper><FullPageDashboard /></MotionWrapper>} />
+        <Route path='/AiChatbox' element={<MotionWrapper><AiChatBox /></MotionWrapper>} />
         <Route path='/expense' element={<MotionWrapper><Expense /></MotionWrapper>} />
         <Route path='/about' element={<MotionWrapper><About /></MotionWrapper>} />
       </Routes>

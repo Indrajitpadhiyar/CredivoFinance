@@ -36,7 +36,6 @@ app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 
-
 app.listen(PORT, () => {
   console.log(`✅ Server is running on port ${PORT}`);
 });
