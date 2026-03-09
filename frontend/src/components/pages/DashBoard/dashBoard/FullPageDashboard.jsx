@@ -7,11 +7,12 @@ import { API_PATHS } from '../../../../../utils/apiPath.js'
 import InfoCard from '../../../Card/InfoCard'
 import { IoMdCard } from 'react-icons/io';
 import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu'
-import { addThousandSeparators } from '../../../../../utils/helper.js'
+import { addThousandSeparators, preparExpenseLinrChartData } from '../../../../../utils/helper.js'
 import RecentTransactions from './RecentTransactions'
 import FinanceOverView from './FinanceOverView'
 import ExpenseTransactions from './ExpenseTransactions'
 import Last30DaysExpense from './Last30DaysExpense.jsx'
+import CustomLineChart from '../Chart/CustomLineChart'
 import Navbar from '../../../Navbar/Navbar'
 import RecentIncomeWithChart from './RecentIncomeWithChart'
 import RecentIncome from './RecentIncome'
@@ -58,7 +59,7 @@ function FullPageDashboard() {
     return (
         <>
             <Navbar />
-            <div className='flex flex-col w-full overflow-y-scroll'>
+            <div className='flex flex-col w-full'>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                     <InfoCard
                         icon={<IoMdCard />}
@@ -80,16 +81,37 @@ function FullPageDashboard() {
                     />
                 </div>
 
-                <div className='grid ml-2 h-[80%] grid-cols-1 md:grid-cols-2 p-5 gap-2 '>
+                <div className='grid grid-cols-1 lg:grid-cols-2 p-5 gap-6'>
+                    {/* Primary Charts Row */}
+                    <div className='flex flex-col gap-6'>
+                        <FinanceOverView
+                            totalBalance={dashboardData?.totalBalance || 0}
+                            totalIncome={dashboardData?.totalIncome || 0}
+                            totalExpense={dashboardData?.totalExpense || 0}
+                        />
+                        <RecentIncomeWithChart
+                            data={dashboardData?.last60DaysIncome?.transactions?.slice(0, 4) || []}
+                            totalIncome={dashboardData?.totalIncome || 0}
+                        />
+                    </div>
+
+                    <div className='flex flex-col gap-6'>
+                        <Last30DaysExpense
+                            transactions={dashboardData?.last30DaysExpense?.transactions || []}
+                        />
+                        {/* Expense Trend Chart (The new Cyber Blue one) */}
+                        <div className='card'>
+                            <h5 className='text-lg font-semibold mb-4'>Expense Trend</h5>
+                            <CustomLineChart
+                                data={preparExpenseLinrChartData(dashboardData?.last30DaysExpense?.transactions || [])}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Transaction Lists Row */}
                     <RecentTransactions
                         transactions={dashboardData?.recentTransactions}
                         onSeeMore={() => navigate("/Expense")}
-                    />
-
-                    <FinanceOverView
-                        totalBalance={dashboardData?.totalBalance || 0}
-                        totalIncome={dashboardData?.totalIncome || 0}
-                        totalExpense={dashboardData?.totalExpense || 0}
                     />
 
                     <ExpenseTransactions
@@ -97,20 +119,10 @@ function FullPageDashboard() {
                         onSeeMore={() => navigate("/Expense")}
                     />
 
-                    <Last30DaysExpense
-                        transactions={dashboardData?.last30DaysExpense?.transactions || []}
-                    />
-
-                    <RecentIncomeWithChart
-                        data={dashboardData?.last60DaysIncome?.transactions?.slice(0, 4) || []}
-                        totalIncome={dashboardData?.totalIncome || 0}
-                    />
-
                     <RecentIncome
                         transactions={dashboardData?.last60DaysIncome?.transactions || []}
                         onSeeMore={() => navigate("/income")}
                     />
-
                 </div>
             </div>
         </>

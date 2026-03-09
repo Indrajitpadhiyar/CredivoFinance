@@ -124,7 +124,7 @@ function Expense() {
 
 
   return (
-    <div className='overflow-hidden overflow-y-auto'>
+    <div className=''>
       <Navbar />
       <div className='my-5 mx-auto'>
         <div className='grid grid-cols-1 gap-6'>

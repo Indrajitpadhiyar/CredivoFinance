@@ -24,10 +24,13 @@ function CustomPieChart({
             nameKey="name"
             cx="50%"
             cy="50%"
-            innerRadius={70}
-            outerRadius={100}
+            innerRadius={85}
+            outerRadius={110}
+            paddingAngle={5}
             fill="#8884d8"
             labelLine={false}
+            stroke="#fff"
+            strokeWidth={2}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
@@ -36,16 +39,27 @@ function CustomPieChart({
           <Tooltip content={<CustomTooltip />} />
           <Legend content={<CustomLegend />} />
           {showTextAnchor && (
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              className="text-base font-semibold"
-            >
-              {label}
-              <tspan x="50%" dy="1.5em">{totalAmount}</tspan>
-            </text>
+            <g>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="fill-gray-400 text-xs font-medium uppercase tracking-wider"
+              >
+                {label}
+              </text>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                dy="1.2em"
+                className="fill-slate-900 text-xl font-bold"
+              >
+                {totalAmount}
+              </text>
+            </g>
           )}
         </PieChart>
       </ResponsiveContainer>

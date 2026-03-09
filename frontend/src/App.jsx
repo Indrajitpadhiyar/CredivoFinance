@@ -41,10 +41,10 @@ function App() {
 
   return (
     <>
-      <div className='cursor w-5 h-5 bg-red-500 rounded-full absolute z-50'></div>
+      <div className='cursor w-5 h-5 bg-red-500 rounded-full fixed z-50 pointer-events-none'></div>
       <UserProvider>
-        <div className='w-full h-screen relative overflow-hidden z-1'>
-          <div className='pages flex flex-col absolute h-full w-full bottom-0 z-100'>
+        <div className='w-full min-h-screen relative z-1'>
+          <div className='pages flex flex-col w-full z-100'>
             <Router>
               <AnimatedRoutes />
             </Router>
@@ -69,7 +69,7 @@ function AnimatedRoutes() {
   const pageTransition = {
     initial: { x: -100, opacity: 0 },
     animate: { x: 0, opacity: 1 },
-    exit: { x: -100, opacity: 0 },      
+    exit: { x: -100, opacity: 0 },
     transition: { duration: 0.4 },
   };
 
