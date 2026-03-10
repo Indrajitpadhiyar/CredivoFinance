@@ -1,4 +1,12 @@
+const dns = require("dns");
 const mongoose = require("mongoose");
+
+// Use a reliable public DNS server for SRV lookups when the system resolver is blocked.
+// You can override by setting DNS_SERVERS="8.8.8.8,1.1.1.1" in your .env.
+const dnsServers = process.env.DNS_SERVERS
+  ? process.env.DNS_SERVERS.split(",").map((s) => s.trim())
+  : ["8.8.8.8", "1.1.1.1"];
+dns.setServers(dnsServers);
 
 const connectDb = async () => {
   try {
